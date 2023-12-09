@@ -5,6 +5,9 @@ import os
 
 #resett
 def reset():
+    global val
+    val = ""
+
     global tid
     tid = 0
 
@@ -26,6 +29,20 @@ def reset():
     global spelare
     spelare = []
 
+    global skolval
+    skolval = ""
+
+    global koridor
+    koridor = ""
+
+    global vapen
+    vapen = ""
+
+    global böcker
+    böcker = ""
+
+    global läst
+    läst = 0
 #Start
 försök = 0
 
@@ -61,7 +78,7 @@ def sovrum():
             print(f"du somnar om {tid} gången")
             sovrum()
 
-        if tid == 9:
+        while tid == 9:
             print("""
             på labbet sitter en överarbetad arbetare,
             det är kväll och han skulle egentligen fått åka hem för många timmar sedan.
@@ -78,7 +95,7 @@ def sovrum():
                 start()
         
     while vakenhet == "2":
-        if 5 > tid > 2:
+        while 5 > tid > 2:
             print("""
             Du vaknar i nån slags pod, en alien märker att du vaknat.
             Det trycker på en knapp och metaliska klor kommer ut ur väggarna... och in i dig.
@@ -91,7 +108,7 @@ def sovrum():
             if val == "0":
                 start()
 
-        if tid > 4 :
+        while tid > 4 :
             print("""
             Du vaknar på en grå planet täck av damm... det finns inget kvar.
             """)
@@ -131,9 +148,11 @@ def köket():
 
     if frukost == "1":
         global droger
-        if droger != ["gas"]:
-            droger = droger + ["gas"]
-            print(f"du har tagit drogerna {droger}")
+        for i in droger:
+            if i == "gas":
+                droger.remove("gas")
+        droger = droger + ["gas"]
+        print(f"du har tagit drogerna {droger}")
 
         while frukost == "1":
             global tunnan
@@ -148,23 +167,22 @@ def köket():
                 köket()
             if tunnan == "2":
                 global spelare
-                if spelare != ["cancer"]:
-                    spelare = spelare + ["cancer"]
-                    print(f"du har {spelare}")
+                spelare = spelare + ["cancer"]
+                print(f"du har {spelare}")
                 hallen()
 
 # hallen
 def hallen():
     global dagsplan
     dagsplan = input("""
-        du är mätt och går till hallen för att fundera på vad du vill göra idag
+        du funderar på vad du vill göra idag
         för:            skriv:
         gå till skolan:   1
         gå ut på äventyr: 2
         stanna hemma:     3
         """)
 
-    if dagsplan == "3":
+    while dagsplan == "3":
         print("Du stannar hemma och chillar hela dagen")
         val = input("""
             Ending: Gött!
@@ -174,7 +192,7 @@ def hallen():
         if val == "0":
             start()
 
-    while dagsplan == 1:
+    while dagsplan == "1":
         global skolval
         skolval = input("""
         Det är söndag... skolan är stängd.
@@ -186,7 +204,96 @@ def hallen():
         if skolval == "2":
             hallen()
         if skolval == "1":
-            Skolan()
+            skolan()
+
+    if dagsplan == "2":
+        parken()
+
+def skolan():
+    global val
+    global koridor
+    koridor = input("""
+    du går runt i skolans koridorer, du kan fortsätta framåt, vika in till bilblioteket eller vända om.
+    för:            skriv:
+    Vänd om:          1
+    fortsätt frammåt: 2
+    Biblioteket:      3
+    """)
+    if koridor == "1":
+        hallen()
+    if koridor == "2":
+        print("du stormar in ett kontor, en lärare har hört dig och kommer ut ur sitt näste.")
+        global vapen
+        vapen = input("""
+        BOSS FIGHT: Magister V. Nordlund
+        för:                 skriv:
+        Ge upp:                1
+        psychological warfare: 2
+        """)
+        while vapen == "1":
+            val = input("""
+            Ending: Kvarsittning
+            för:    skriv:
+            börja om: 0
+            """)
+            if val == "0":
+                start()
+        while vapen == "2":
+            global spelare
+            for i in spelare:
+                if i == "inteligens":
+                    print("du är inte korkad nog att besegra läraren")
+                    val = input("""
+                    Ending: Kvarsittning
+                    för:    skriv:
+                    börja om: 0
+                    """)
+                    if val == "0":
+                        start()
+                
+            print("du säger något så dumt att lärarens huvud exploderar")
+            val = input("""
+            Ending: Fängelse
+            för:    skriv:
+            börja om: 0
+            """)
+            if val == "0":
+                start()
+    if koridor == "3":
+        for i in spelare:
+            if i == "inteligens":
+                print("det finns inget mer att lära sig i biblioteket")
+                skolan()
+        else: biblioteket()
+
+def biblioteket():
+    global böcker
+    böcker = input("""
+    Du sätter dig i bibloteket
+    för:              skriv:
+    läs böcker en stund: 1
+    lämna biblioteket:   2
+    """)
+    if böcker == "2":
+        skolan()
+    if böcker == "1":
+        global läst
+        läst = läst +1
+        print(f"""
+        du har läst böcker i {läst} stund(er)
+        """)
+        if läst == 10:
+            print("du har läst alla böckerna")
+            global spelare
+            spelare = spelare + ["inteligens"]
+            print(f"du har {spelare}")
+            skolan()
+        if läst != 10:
+            biblioteket()
+    
+
+def parken():
+    p
 
 #dra igång allt
 start()
