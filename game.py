@@ -472,10 +472,10 @@ def borgen():
                     lämna grejerna: 2
                     """)
                 if stash == "1":
-                    droger == droger + ["piller"]
+                    droger = droger + ["piller"]
                     print(f"du har tagit drogerna {droger}")
-                    spelare == spelare + ["spagetti"]
-                    spelare == spelare + ["pistol"]
+                    spelare = spelare + ["spagetti"]
+                    spelare = spelare + ["pistol"]
                     print(f"du har {spelare}")
 
                     tunnel = input("""
