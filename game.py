@@ -27,7 +27,7 @@ def reset():
     tunnan = ""
 
     global spelare
-    spelare = []
+    spelare = ["din själ"]
 
     global skolval
     skolval = ""
@@ -43,6 +43,30 @@ def reset():
 
     global läst
     läst = 0
+
+    global trafik
+    trafik = 0
+
+    global riktning
+    riktning = 0
+
+    global tunnel
+    tunnel = ""
+
+    global inspektion
+    inspektion = ""
+
+    global vampyren
+    vampyren = ""
+
+    global stash
+    stash = ""
+
+    global räkning
+    räkning = 0
+
+    global hittad
+    hittad = 0
 #Start
 försök = 0
 
@@ -60,7 +84,6 @@ def start():
 
         sovrum()
 
-# sovrum
 def sovrum():
     global vakenhet
     global tid
@@ -86,6 +109,7 @@ def sovrum():
             han märker inte att en sladd har virat sig runt hans ben och när han går rycker han den från servern.
             Servern med namnet "vintergatan" slocknar.
             """)
+            global val
             val = input("""
             Ending: Oopsy!
             för:    skriv:
@@ -124,7 +148,6 @@ def sovrum():
             print("du går till köket för att äta frukost")
             köket()
 
-# köket
 def köket():
     global frukost
     frukost = input("""
@@ -171,7 +194,6 @@ def köket():
                 print(f"du har {spelare}")
                 hallen()
 
-# hallen
 def hallen():
     global dagsplan
     dagsplan = input("""
@@ -184,6 +206,7 @@ def hallen():
 
     while dagsplan == "3":
         print("Du stannar hemma och chillar hela dagen")
+        global val
         val = input("""
             Ending: Gött!
             för:    skriv:
@@ -207,7 +230,7 @@ def hallen():
             skolan()
 
     if dagsplan == "2":
-        parken()
+        gatan()
 
 def skolan():
     global val
@@ -231,6 +254,7 @@ def skolan():
         psychological warfare: 2
         """)
         while vapen == "1":
+            global val
             val = input("""
             Ending: Kvarsittning
             för:    skriv:
@@ -292,8 +316,227 @@ def biblioteket():
             biblioteket()
     
 
-def parken():
-    p
+def gatan():
+    global trafik
+    trafik = input("""
+    Du står framför ett övergångställe
+    för:    skriv:
+    Gå över: 1
+    Vänta : 2
+    """)
+    while trafik == "1":
+        global val
+        val = input("""
+            Ending: påkörd
+            för:    skriv:
+            börja om: 0
+            """)
+        if val == "0":
+            start()
+    while trafik == "2":
+        print("Vilken tur att du väntade, den föraren var in lämpad för bilar")
+        parken()
 
+def parken():
+    global riktning
+    riktning = input("""
+    du står nu i en park, mot skogen finns en grotta, mot staden finns en öppning till undermarken, vart vill du gå?
+    för:   skriv:
+    grottan: 1
+    Staden: 2
+    Stanna: 3
+    """)
+    
+    while riktning == "3":
+        global val
+        val = input("""
+        du sitter och njuter av solens värme och fåglarnas dova bakgrunds tvitter
+        Ending: Mental health
+        för:    skriv:
+        börja om: 0
+        """)
+        if val == "0":
+            start()
+
+    while riktning == "1":
+        print("du ramlar ner i grottan")
+        grottan()
+
+    while riktning == "2":
+        kloaken()
+
+def grottan():
+    global tunnel
+    tunnel = input("""
+    efter ett tag delar grottan sig i två,
+    vart vill du gå?
+    för:    skriv:
+    höger:    1
+    vänster:  2
+    """)
+    if tunnel == "1":
+        borgen()
+    if tunnel == "2":
+        mötesplattsen()
+
+def borgen():
+    global inspektion
+    inspektion = input("""
+    tillslut kommer du fram till en borg i grottan,
+    utanför ligger en kristall, vad vill du?
+    för: skriv:
+    återvänd: 1
+    inbrott: 2
+    kolla på kristallen: 3
+    """)
+    if inspektion == "1":
+        grottan()
+    while inspektion == "3":
+        global spelare
+        global hittad
+        hittad = spelare.count("inteligens")
+        if hittad > 0:
+            print("""
+            du är smart nog att inse att kristallen är gjord av trä,
+            detta är ju inte alls en kristall, det är en påle.
+            """)
+            spelare = spelare + ["träpåle"]
+            print(f"du har {spelare}")
+            inspektion = input("""
+                tillslut kommer du fram till en borg i grottan,
+                utanför ligger en kristall, vad vill du?
+                för: skriv:
+                återvänd: 1
+                inbrott: 2
+                """)
+            global räkning
+            räkning = räkning +1
+        else:
+            print("du är inte smart nog för att förstå kristallen")
+            inspektion = input("""
+                tillslut kommer du fram till en borg i grottan,
+                utanför ligger en kristall, vad vill du?
+                för: skriv:
+                återvänd: 1
+                inbrott: 2
+                """)
+    while inspektion == "2":
+        print("""
+        du forstätter frammåt in i mörkret,
+        innan du hinner reagera flyger något från skuggorna mot dig,
+        det bränner till i din hals vilket sprider sig genom dina blodådror till hela kroppen
+        """)
+        spelare = spelare + ["vampirism"]
+        spelare.remove("din själ")
+        print(f"du har {spelare}")
+        global vampyren
+
+        vampyren = input("""
+        BOSS FIGHT: vampyren
+        för:                  skriv:
+        ge upp:                 1
+        lökig andedräkt:        2
+        träpåle i dess hjärta: 3
+        """)
+        if vampyren == "1":
+            global val
+            val = input("""
+            Ending: upäten av vampyr
+            för:    skriv:
+            börja om: 0
+            """)
+            if val == "0":
+                start()
+
+        if vampyren == "2":
+            val = input("""
+            att vampyrer dör av lök är en myt.
+            Ending: upäten av vampyr
+            för:    skriv:
+            börja om: 0
+            """)
+            if val == "0":
+                start()
+    
+
+        while vampyren == "3":
+            global tunnel
+            for i in spelare:
+                if i == "träpåle":
+                    global stash
+                    stash = input("""
+                    vampyre, presis som alla andra, dör om man spettsar dem i hjärtat.
+                    Bakom vapyren hittar du en klump med spagetti ett piller och en laddad pistol:
+                    för:          skriv:
+                    ta grejerna:    1
+                    lämna grejerna: 2
+                    """)
+                if stash == "1":
+                    droger == droger + ["piller"]
+                    print(f"du har tagit drogerna {droger}")
+                    spelare == spelare + ["spagetti"]
+                    spelare == spelare + ["pistol"]
+                    print(f"du har {spelare}")
+
+                    tunnel = input("""
+                    vill du kika på andra sidan grottan eller vill du gå hem?
+                    för:        skriv:
+                    gå hem:       1
+                    andra sidan:  2
+                    """)
+
+                if stash == "2":
+                    tunnel = input("""
+                    vill du kika på andra sidan grottan eller vill du gå hem?
+                    för:        skriv:
+                    gå hem:       1
+                    andra sidan:  2
+                    """)
+            else:
+                val = input("""
+                du har ingen träpåle
+                Ending: upäten av vampyr
+                för:    skriv:
+                börja om: 0
+                """)
+                if val == "0":
+                    start()
+
+            
+            if tunnel == "1":
+                print("du har sätt något du inte borde ha sätt")
+                for i in spelare:
+                    if i == "vampirism":
+                        print("""
+                        dina nya vampyr krafter låter dig ducka undan från skotten något skutit mot dig,
+                        bara en bra stund efter du flytt in i skogen inser du att din hud fräter,
+                        """)
+                        val = input("""
+                            Ending: vampyr
+                            för:    skriv:
+                            börja om: 0
+                            """)
+                        if val == "0":
+                            start()
+                    else: val = input("""
+                        Ending: skuten
+                        för:    skriv:
+                        börja om: 0
+                        """)
+                    if val == "0":
+                        start()
+            if tunnel == "2":
+                mötesplattsen()
+
+
+
+
+
+def mötesplattsen():
+    g
+
+
+def kloaken():
+    f
 #dra igång allt
 start()
