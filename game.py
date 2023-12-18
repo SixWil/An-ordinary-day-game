@@ -101,6 +101,7 @@ def reset():
 
     global respekt
     respekt = ""
+
 #Start
 försök = 0
 
@@ -120,7 +121,10 @@ Varje val assosieras med en siffra, för att välja det valet skriv dess siffra 
 Detta spelet är designat för att spelas flera gånger, för att starta om skriv 0
 """)
 
+#starta och starta om programmet
 def start():
+    "resettar programmet, initsierar sovrummet"
+
     while True:
         reset()
         os.system('cls')
@@ -138,7 +142,9 @@ def start():
 
         sovrum()
 
+# Sovrum
 def sovrum():
+    "start rum, inget speciellt"
     global vakenhet
     global tid
 
@@ -204,8 +210,9 @@ def sovrum():
         if tid < 3:
             print("du går till köket för att äta frukost")
             köket()
-
+#Köket
 def köket():
+    "köket, här kan du välja frukost, har liten effekt på spelets slut"
     global frukost
     frukost = input("""
     I köket står en svart tunna med en hazard symbol på,
@@ -255,8 +262,9 @@ def köket():
                 spelare = spelare + ["cancer"]
                 print(f"du har {spelare}")
                 hallen()
-
+#Hallen
 def hallen():
+    "vilken ordning vill du utforska världen, korrekt är först skolan sedan äventyr, stanna hemma ger en ending"
     global dagsplan
     dagsplan = input("""
         du funderar på vad du vill göra idag
@@ -298,7 +306,9 @@ def hallen():
     if dagsplan == "2":
         gatan()
 
+#skolan
 def skolan():
+    "i skolan kan du upnå inteligens, det kommer du behöva senare, går du för långt får du en ending"
     global val
     global koridor
     koridor = input("""
@@ -360,7 +370,9 @@ def skolan():
                 skolan()
         else: biblioteket()
 
+#biblioteket
 def biblioteket():
+    "läs 3 böcker för att bli smart, läser du 10 kommer bibliotikaren"
     global böcker
     böcker = input("""
     Du sätter dig i bibloteket
@@ -412,7 +424,9 @@ def biblioteket():
                 if val == "0":
                     start()  
 
+#övergångstället
 def gatan():
+    "detta är bara för att retas, fyller ingen funktion alls."
     global trafik
     trafik = input("""
     Du står framför ett övergångställe
@@ -435,7 +449,9 @@ def gatan():
         print("Vilken tur att du väntade, den föraren var in lämpad för bilar")
         parken()
 
+#vägvalet
 def parken():
+    "här får du välja riktning igen, korrekt är grottan först sedan staden, stanna ger en ending"
     global riktning
     riktning = input("""
     du står nu i en park, mot skogen finns en grotta, mot staden finns en öppning till undermarken, vart vill du gå?
@@ -464,7 +480,9 @@ def parken():
     while riktning == "2":
         kloaken()
 
+#grottan
 def grottan():
+    "här kan du gå vänster till staden ändå, du ska gå till höger"
     global tunnel
     tunnel = input("""
     efter ett tag delar grottan sig i två,
@@ -480,7 +498,9 @@ def grottan():
     if tunnel == "1":
         mötesplattsen()
 
+#vampyrens lya
 def borgen():
+    "här sloss du med vampyren, och får grejerna för att besegra gurg i staden, pålen krävs för att besegra vampyren, inteligens krävs för pålen."
     global inspektion
     inspektion = input("""
     tillslut kommer du fram till en borg i grottan,
@@ -639,8 +659,9 @@ def borgen():
                     start()
             if tunnel == "2":
                 mötesplattsen()
-
+# där tunnlarna och grottorna möts
 def mötesplattsen():
+    "där grottan och kloaken möts, är du vampyr kan du gå igenom gallret och få en ending"
     print("""
     du ser att kloakerna leder ned i grottorna,
     det kan inte vara bra.
@@ -672,8 +693,9 @@ def mötesplattsen():
     
     kloaken()
 
-
+#Stadens tunnlar
 def kloaken():
+    "under staden, du möter gurg, detta är sista scenen i spelet (om du gjort rätt)"
     print("""
     du fortsätter frammåt till du plöttsligt ser en siluett av vad du tror är en man, men något är off,
     det ser ut som att han smälter. Du snubblar och ljudet du gör för att återfå balansen ekar genom tunneln,
@@ -923,5 +945,6 @@ def kloaken():
         """)
         if val == "0":
             start()
+
 #dra igång allt
 start()
