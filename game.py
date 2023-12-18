@@ -3,8 +3,15 @@
 #imports
 import os
 
+
 #resett
 def reset():
+    global kvar
+    kvar = []
+
+    global klar
+    klar = []
+
     global val
     val = ""
 
@@ -27,7 +34,7 @@ def reset():
     tunnan = ""
 
     global spelare
-    spelare = ["din själ"]
+    spelare = []
 
     global skolval
     skolval = ""
@@ -35,8 +42,8 @@ def reset():
     global koridor
     koridor = ""
 
-    global vapen
-    vapen = ""
+    global läraren
+    läraren = ""
 
     global böcker
     böcker = ""
@@ -67,20 +74,67 @@ def reset():
 
     global hittad
     hittad = 0
+
+    global galler
+    galler = ""
+
+    global antiklimax
+    antiklimax = ""
+
+    global gurg
+    gurg = ""
+
+    global romans
+    romans = ""
+
+    global agent
+    agent = ""
+
+    global gurg_the_groom
+    gurg_the_groom = ""
+
+    global nekad
+    nekad = ""
+
+    global sim
+    sim = ""
+
+    global respekt
+    respekt = ""
 #Start
 försök = 0
+
+global intro
+os.system('cls')
+intro = input("""
+Hej! Välkommen till Sixten Wilde och Sigge Nilssons Spel:
+  ______                          _ _             _             
+ |  ____|                        | (_)           | |            
+ | |__   _ __   __   ____ _ _ __ | |_  __ _    __| | __ _  __ _ 
+ |  __| | '_ \  \ \ / / _` | '_ \| | |/ _` |  / _` |/ _` |/ _` |
+ | |____| | | |  \ V / (_| | | | | | | (_| | | (_| | (_| | (_| |
+ |______|_| |_|   \_/ \__,_|_| |_|_|_|\__, |  \__,_|\__,_|\__, |
+                                       __/ |               __/ |
+                                      |___/               |___/ 
+Varje val assosieras med en siffra, för att välja det valet skriv dess siffra längst ner i konsollen (denna texten är i konsollen).
+Detta spelet är designat för att spelas flera gånger, för att starta om skriv 0
+""")
 
 def start():
     while True:
         reset()
         os.system('cls')
+        global spelare
+        spelare = ["din själ"]
 
         global försök
         försök = försök + 1
         print(f"""
-        AN ORDINARY DAY
+        EN VANLIG DAG
         försök {försök}
         """)
+
+        print(f"du har {spelare}")
 
         sovrum()
 
@@ -90,11 +144,12 @@ def sovrum():
 
     vakenhet = input("""
     du vaknar, vad gör du?
-    för:    skriv:
+
     Somna om: 1.
     Gå upp: 2.
     """)
-
+    if vakenhet == "0":
+        start()
     while vakenhet == "1":
         if tid < 9:
             tid = tid+1
@@ -103,16 +158,18 @@ def sovrum():
 
         while tid == 9:
             print("""
-            på labbet sitter en överarbetad arbetare,
-            det är kväll och han skulle egentligen fått åka hem för många timmar sedan.
-            Han ställer sig upp för att gå och hämta ännu en kopp kaffe,
-            han märker inte att en sladd har virat sig runt hans ben och när han går rycker han den från servern.
+            på labbet sitter en överarbetad arbetare och jobbar med en server,
+            han skulle egentligen fått åka hem för många timmar sedan.
+            på en annan server börjar en lampa blinka vilket betyder att något importerats?
+            han ställer sig upp för att se vad som hänt,
+            han märker inte att en sladd har virat sig runt hans ben,
+            när han går rycks den ur servern han jobbat på.
             Servern med namnet "vintergatan" slocknar.
             """)
             global val
             val = input("""
             Ending: Oopsy!
-            för:    skriv:
+        
             börja om: 0
             """)
             if val == "0":
@@ -126,7 +183,7 @@ def sovrum():
             """)
             val = input("""
             Ending: skördad
-            för:    skriv:
+        
             börja om: 0
             """)
             if val == "0":
@@ -138,7 +195,7 @@ def sovrum():
             """)
             val = input("""
             Ending: Wasteland
-            för:    skriv:
+        
             börja om: 0
             """)
             if val == "0":
@@ -151,16 +208,19 @@ def sovrum():
 def köket():
     global frukost
     frukost = input("""
-    I köket står en svart tunna med en toxic waste symbol på,
+    I köket står en svart tunna med en hazard symbol på,
     den osar en grön gas.
     bakom ugnen ligger en macka som varit där så länge du kan minnas.
     Ur skafferiet nästan lyser ett fantastiskt paket med smaskiga cornflakes från kellogs.
     vad gör du för frukost?
-    för:              skriv:
+
     sniffa på tunnan:   1
     Mackan:             2
-    kellogs corflakes™: 3
+    kellogs cornflakes™: 3
     """)
+    if frukost == "0":
+        start()
+
     if frukost == "2":
         print("Mycket dåligt val")
         hallen()
@@ -181,11 +241,13 @@ def köket():
             global tunnan
             tunnan = input("""
             Hela världen snurrar och du kan inte skilja upp och ned, det känns ganska bra.
-            för:                    skriv:
+
             Quit while youre ahead:   1
             Drick gift (som en idiot) 2
             """)
 
+            if tunnan == "0":
+                start()
             if tunnan == "1":
                 köket()
             if tunnan == "2":
@@ -198,18 +260,20 @@ def hallen():
     global dagsplan
     dagsplan = input("""
         du funderar på vad du vill göra idag
-        för:            skriv:
+
         gå till skolan:   1
         gå ut på äventyr: 2
         stanna hemma:     3
         """)
 
+    if dagsplan == "0":
+        start()
     while dagsplan == "3":
         print("Du stannar hemma och chillar hela dagen")
         global val
         val = input("""
             Ending: Gött!
-            för:    skriv:
+        
             börja om: 0
             """)
         if val == "0":
@@ -220,10 +284,12 @@ def hallen():
         skolval = input("""
         Det är söndag... skolan är stängd.
         Vill du försöka ta dig in ändå?
-        för:       skriv:
+
         inbrott:     1
         gå hem igen: 2
         """)
+        if skolval == "0":
+            start()
         if skolval == "2":
             hallen()
         if skolval == "1":
@@ -237,39 +303,43 @@ def skolan():
     global koridor
     koridor = input("""
     du går runt i skolans koridorer, du kan fortsätta framåt, vika in till bilblioteket eller vända om.
-    för:            skriv:
+
     Vänd om:          1
     fortsätt frammåt: 2
     Biblioteket:      3
     """)
+    if koridor == "0":
+        start()
     if koridor == "1":
         hallen()
     if koridor == "2":
         print("du stormar in ett kontor, en lärare har hört dig och kommer ut ur sitt näste.")
-        global vapen
-        vapen = input("""
+        global läraren
+        läraren = input("""
         BOSS FIGHT: Magister V. Nordlund
-        för:                 skriv:
+
         Ge upp:                1
         psychological warfare: 2
         """)
-        while vapen == "1":
+        if läraren == "0":
+            start()
+        while läraren == "1":
             global val
             val = input("""
             Ending: Kvarsittning
-            för:    skriv:
+        
             börja om: 0
             """)
             if val == "0":
                 start()
-        while vapen == "2":
+        while läraren == "2":
             global spelare
             for i in spelare:
                 if i == "inteligens":
                     print("du är inte korkad nog att besegra läraren")
                     val = input("""
                     Ending: Kvarsittning
-                    för:    skriv:
+                
                     börja om: 0
                     """)
                     if val == "0":
@@ -278,7 +348,7 @@ def skolan():
             print("du säger något så dumt att lärarens huvud exploderar")
             val = input("""
             Ending: Fängelse
-            för:    skriv:
+        
             börja om: 0
             """)
             if val == "0":
@@ -294,10 +364,12 @@ def biblioteket():
     global böcker
     böcker = input("""
     Du sätter dig i bibloteket
-    för:              skriv:
+
     läs böcker en stund: 1
     lämna biblioteket:   2
     """)
+    if böcker == "0":
+        start()
     if böcker == "2":
         skolan()
     if böcker == "1":
@@ -306,29 +378,55 @@ def biblioteket():
         print(f"""
         du har läst böcker i {läst} stund(er)
         """)
-        if läst == 10:
-            print("du har läst alla böckerna")
+        if läst == 3:
             global spelare
             spelare = spelare + ["inteligens"]
             print(f"du har {spelare}")
-            skolan()
         if läst != 10:
             biblioteket()
-    
+        if läst == 10:
+            global respekt
+            respekt = input("""
+            Ur en hög böcker vaknar en biblotikarie, du får inte vara här idag
+            BOSS FIGHT: biblotikarien
+
+            var tyst i bilbioteket: 2
+            skrik och slamra:       3
+            """)
+            if respekt == "0":
+                start()
+            if respekt == "2":
+                print("""
+                "eh, du läser ju faktiskt riktiga böcker"
+                hon låter dig slippa undan
+                """)
+                skolan()
+            if respekt == "3":
+                val = input("""
+                din ligism gör att biblioteket reagerar våldamt,
+                en hylla tippar över och krossar dig
+                Ending: karma
+            
+                börja om: 0
+                """)
+                if val == "0":
+                    start()  
 
 def gatan():
     global trafik
     trafik = input("""
     Du står framför ett övergångställe
-    för:    skriv:
+
     Gå över: 1
     Vänta : 2
     """)
+    if trafik == "0":
+        start()
     while trafik == "1":
         global val
         val = input("""
             Ending: påkörd
-            för:    skriv:
+        
             börja om: 0
             """)
         if val == "0":
@@ -341,18 +439,19 @@ def parken():
     global riktning
     riktning = input("""
     du står nu i en park, mot skogen finns en grotta, mot staden finns en öppning till undermarken, vart vill du gå?
-    för:   skriv:
+
     grottan: 1
     Staden: 2
     Stanna: 3
     """)
-    
+    if riktning == "0":
+        start()
     while riktning == "3":
         global val
         val = input("""
         du sitter och njuter av solens värme och fåglarnas dova bakgrunds tvitter
         Ending: Mental health
-        för:    skriv:
+    
         börja om: 0
         """)
         if val == "0":
@@ -370,13 +469,15 @@ def grottan():
     tunnel = input("""
     efter ett tag delar grottan sig i två,
     vart vill du gå?
-    för:    skriv:
-    höger:    1
-    vänster:  2
+
+    höger:    2
+    vänster:  1
     """)
-    if tunnel == "1":
-        borgen()
+    if tunnel == "0":
+        start()
     if tunnel == "2":
+        borgen()
+    if tunnel == "1":
         mötesplattsen()
 
 def borgen():
@@ -384,11 +485,13 @@ def borgen():
     inspektion = input("""
     tillslut kommer du fram till en borg i grottan,
     utanför ligger en kristall, vad vill du?
-    för: skriv:
+
     återvänd: 1
     inbrott: 2
     kolla på kristallen: 3
     """)
+    if inspektion == "0":
+        start()
     if inspektion == "1":
         grottan()
     while inspektion == "3":
@@ -405,10 +508,12 @@ def borgen():
             inspektion = input("""
                 tillslut kommer du fram till en borg i grottan,
                 utanför ligger en kristall, vad vill du?
-                för: skriv:
+
                 återvänd: 1
                 inbrott: 2
                 """)
+            if inspektion == "0":
+                start()
             global räkning
             räkning = räkning +1
         else:
@@ -416,10 +521,12 @@ def borgen():
             inspektion = input("""
                 tillslut kommer du fram till en borg i grottan,
                 utanför ligger en kristall, vad vill du?
-                för: skriv:
+
                 återvänd: 1
                 inbrott: 2
                 """)
+            if inspektion == "0":
+                start()
     while inspektion == "2":
         print("""
         du forstätter frammåt in i mörkret,
@@ -433,16 +540,18 @@ def borgen():
 
         vampyren = input("""
         BOSS FIGHT: vampyren
-        för:                  skriv:
+
         ge upp:                 1
         lökig andedräkt:        2
         träpåle i dess hjärta: 3
         """)
+        if vampyren == "0":
+            start()
         if vampyren == "1":
             global val
             val = input("""
             Ending: upäten av vampyr
-            för:    skriv:
+        
             börja om: 0
             """)
             if val == "0":
@@ -452,7 +561,7 @@ def borgen():
             val = input("""
             att vampyrer dör av lök är en myt.
             Ending: upäten av vampyr
-            för:    skriv:
+        
             börja om: 0
             """)
             if val == "0":
@@ -461,82 +570,358 @@ def borgen():
 
         while vampyren == "3":
             global tunnel
-            for i in spelare:
-                if i == "träpåle":
-                    global stash
-                    stash = input("""
-                    vampyre, presis som alla andra, dör om man spettsar dem i hjärtat.
-                    Bakom vapyren hittar du en klump med spagetti ett piller och en laddad pistol:
-                    för:          skriv:
-                    ta grejerna:    1
-                    lämna grejerna: 2
-                    """)
+            if spelare.count("träpåle") > 0:
+                global stash
+                stash = input("""
+                vampyrer, presis som alla andra, dör om man spettsar dem i hjärtat.
+                Bakom vapyren hittar du en klump med spagetti ett piller och en laddad pistol:
+
+                ta grejerna:    1
+                lämna grejerna: 2
+                """)
+                if stash == "0":
+                    start()
                 if stash == "1":
+                    global droger
                     droger = droger + ["piller"]
                     print(f"du har tagit drogerna {droger}")
                     spelare = spelare + ["spagetti"]
                     spelare = spelare + ["pistol"]
                     print(f"du har {spelare}")
 
+                    global tunnel
                     tunnel = input("""
                     vill du kika på andra sidan grottan eller vill du gå hem?
-                    för:        skriv:
-                    gå hem:       1
-                    andra sidan:  2
-                    """)
 
-                if stash == "2":
-                    tunnel = input("""
-                    vill du kika på andra sidan grottan eller vill du gå hem?
-                    för:        skriv:
                     gå hem:       1
                     andra sidan:  2
                     """)
+                    if tunnel == "0":
+                        start()
+
+                    if stash == "2":
+                        tunnel = input("""
+                        vill du kika på andra sidan grottan eller vill du gå hem?
+
+                        gå hem:       1
+                        andra sidan:  2
+                        """)
             else:
                 val = input("""
                 du har ingen träpåle
                 Ending: upäten av vampyr
-                för:    skriv:
+            
                 börja om: 0
                 """)
                 if val == "0":
                     start()
-
             
-            if tunnel == "1":
+            while tunnel == "1":
                 print("du har sätt något du inte borde ha sätt")
-                for i in spelare:
-                    if i == "vampirism":
-                        print("""
-                        dina nya vampyr krafter låter dig ducka undan från skotten något skutit mot dig,
-                        bara en bra stund efter du flytt in i skogen inser du att din hud fräter,
-                        """)
-                        val = input("""
-                            Ending: vampyr
-                            för:    skriv:
-                            börja om: 0
-                            """)
-                        if val == "0":
-                            start()
-                    else: val = input("""
-                        Ending: skuten
-                        för:    skriv:
+                if spelare.count("vampirism") > 0: 
+                    print("""
+                    dina nya vampyr krafter låter dig ducka undan från skotten något skutit mot dig,
+                    bara en bra stund efter du flytt in i skogen inser du att din hud fräter,
+                    """)
+                    val = input("""
+                        Ending: vampyr
+                    
                         börja om: 0
                         """)
                     if val == "0":
-                        start()
+                        start() 
+                else: val = input("""
+                    Ending: skuten
+                
+                    börja om: 0
+                    """)
+                if val == "0":
+                    start()
             if tunnel == "2":
                 mötesplattsen()
 
-
-
-
-
 def mötesplattsen():
-    g
+    print("""
+    du ser att kloakerna leder ned i grottorna,
+    det kan inte vara bra.
+    """)
+    global galler
+    galler = spelare.count("vampirism")
+    if galler > 0:
+        global antiklimax
+        antiklimax = input("""
+        du kan använda dina vampyr krafter för att ta din igenom gallren, eller så kan du förtsätta frammåt
+
+        genom gallret:    1
+        fortsätt frammåt: 2
+        """)
+        if antiklimax == "0":
+            start()
+        while antiklimax == "1":
+            val = input("""
+            du förvandlar dig till fladdermöss och flyger igenom gallret,
+            på andra sidan ser du en skyllt där det står:
+            "DEVELOPER NOTE: här finns det inget"
+            du dog av antiklimax
+            Ending: MEH!
+        
+            börja om: 0
+            """)
+            if val == "0":
+                start()
+    
+    kloaken()
 
 
 def kloaken():
-    f
+    print("""
+    du fortsätter frammåt till du plöttsligt ser en siluett av vad du tror är en man, men något är off,
+    det ser ut som att han smälter. Du snubblar och ljudet du gör för att återfå balansen ekar genom tunneln,
+    figuren tittar på dig.
+    """)
+    global gurg
+    while droger.count("piller") > 0:
+        gurg = input("""
+        BOSS FIGHT: gurg the ...guy?
+
+        fly: 1
+        blockera: 2
+        dodge'a: 3
+        spaghetti: 4
+        pistol: 5
+        vampyr kraft: 6
+        """)
+        if gurg == "0":
+            start()
+        while gurg == "1":
+            val = input("""
+            Motstånd är meningslöst,
+            Gurg äter up dig,
+            Ending: upäten av gurg
+        
+            börja om: 0
+            """)
+            if val == "0":
+                start()
+        while gurg == "2":
+            val = input("""
+            Motstånd är meningslöst,
+            Gurg äter up dig,
+            Ending: upäten av gurg
+        
+            börja om: 0
+            """)
+            if val == "0":
+                start()
+        while gurg == "3":
+            val = input("""
+            Motstånd är meningslöst,
+            Gurg äter up dig,
+            Ending: upäten av gurg
+        
+            börja om: 0
+            """)
+            if val == "0":
+                start()
+        while gurg == "5":
+            val = input("""
+            Du plockar fram pistolen och skuter villt mot varelsen,
+            du har avlossat alla skott i pistolen, några kulor träffar och gör skada... inte många nog.
+            Motstånd är meningslöst,
+            Gurg äter up dig,
+            Ending: upäten av gurg
+        
+            börja om: 0
+            """)
+            if val == "0":
+                start()
+
+        while gurg == "6":
+            val = input("""
+            du flyger fram och biter gurg i halsen och ger honom vampirism,
+            han biter dig i halsen tillbaka och ger dig död,
+            Ending: upäten av gurg
+        
+            börja om: 0
+            """)
+            if val == "0":
+                start()
+        while gurg == "4":
+            global romans
+            romans = input("""
+            du gräppar frenetiskt efter något att och får fram spaghettin,
+            du håller fram den som en sköld framför dig.
+            Efter en liten stund öpnar du ögonen igen och ser att figuren rodnar,
+            den har tagit spaghettin som en romantisk gest, och vänder sig om för att ge dig något i retur.
+
+            vänta: 1
+            SKUT:  2
+            """)
+
+            if romans == "0":
+                start()  
+
+            while romans == "2":
+                global agent
+                agent =input("""
+                du plockar fram pistolen, *ditt hjärta slår* du siktar, *ditt hjärta slår* och du skuter...
+                PANG! *det piiiper i dina öron* omgivningen byter färg och varalsen faller ihop på golvet.
+                Bakom dig för du att en person klappar händerna "imponerande",
+                när du vänder dig om ser du en person i kostym,
+                de erbjuder dig ett jobb och säger att de kanske kan bota din vampirism om du godkänner.
+            
+                acceptera: 1
+                neka:      2
+                """)
+                if agent == "0":
+                    start()
+                while agent == "1":
+                    val = input("""
+                    "mycket bra val"
+                    Ending: Bödeln
+                
+                    börja om: 0
+                    """)
+                    if val == "0":
+                        start()
+                while agent == "2":
+                    print("""
+                    "dåligt val"
+                    Boss fight: agent K
+
+                    """)
+                    input("""
+                    PANG! *det isar i bröstet* innan du hinner reagera har agenten skutit dig...
+                    "mycket dåligt val"
+                    Ending: avrättad
+                
+                    börja om: 0
+                    """)
+                    if val == "0":
+                        start()     
+
+            while romans == "1":
+                global gurg_the_groom
+                gurg_the_groom = input("""
+                gurg erbjuder dig en (självlysande) svamp som sin gåva til dig, vill du bli ihop med gurg?
+
+                acceptera:     1
+                neka:          2
+                """)
+                if gurg_the_groom == "0":
+                    start()
+                while gurg_the_groom == "1":
+                    while droger.count("gas") > 0:
+                        global sim
+                        sim = input("""
+                        du har tagit alla tre droger och har därför blivigt uplyst,
+                        du inser att du lever i en simulation... och att det finns andra serverar.
+
+                        utforska: 1
+                        återvänd: 2
+                        """)
+                        if sim == "0":
+                            start()
+                        if sim == "1":
+                            input("""
+                            Det tar en stund att åka genom sladdarna,
+                            när du väl anländer har den förra servern slocknat.
+                            Ending: destroyer of worlds
+                        
+                            börja om: 0
+                            """)
+                            if val == "0":
+                                start()
+                        if sim=="2":
+                            print("du återvänder till jorden")
+                            break
+                    input("""
+                    du och gurg lever lyckliga i alla era dagar.
+                    Ending: Ordinary day 2?.. gurg jn the swamp monster vampire?
+                
+                    börja om: 0
+                    """)
+                    if val == "0":
+                        start()  
+
+                while gurg_the_groom == "2":
+                    global nekad
+                    nekad = input("""
+                    gurg ser förvirrad ut
+
+                    vänta: 1
+                    SKUT: 2
+                    """)
+                    if nekad == "0":
+                        start()
+                    while nekad == "1":
+                        print("""
+                        när han inser vad du gjort blir han förargad
+                        """)
+                        val = input("""
+                        Motstånd är meningslöst,
+                        Gurg äter up dig,
+                        Ending: upäten av gurg
+                    
+                        börja om: 0
+                        """)
+                        if val == "0":
+                            start()
+                    while nekad == "2":
+                        agent =input("""
+                        du plockar fram pistolen, *ditt hjärta slår* du siktar, *ditt hjärta slår* och du skuter...
+                        PANG! *det piiiper i dina öron* omgivningen byter färg och varalsen faller ihop på golvet.
+                        Bakom dig för du att en person klappar händerna "imponerande",
+                        när du vänder dig om ser du en person i kostym,
+                        de erbjuder dig ett jobb och säger att de kanske kan bota din vampirism om du godkänner.
+                    
+                        acceptera: 1
+                        neka:      2
+                        """)
+                        while agent == "1":
+                            val = input("""
+                            "mycket bra val"
+                            Ending: Bödeln
+                        
+                            börja om: 0
+                            """)
+                            if val == "0":
+                                start()
+                        while agent == "2":
+                            print("""
+                            "dåligt val"
+                            Boss fight: agent K
+
+                            """)
+                            input("""
+                            PANG! *det isar i bröstet* innan du hinner reagera har agenten skutit dig...
+                            "mycket dåligt val"
+                            Ending: avrättad
+                        
+                            börja om: 0
+                            """)
+                            if val == "0":
+                                start()   
+
+                        
+
+
+    else:
+        gurg = input("""
+        BOSS FIGHT: gurg the ...guy?
+
+        fly:       1
+        blockera:  2
+        dodge'a:   3
+        """)
+        val = input("""
+        Motstånd är meningslöst,
+        Gurg äter up dig,
+        Ending: upäten av gurg
+    
+        börja om: 0
+        """)
+        if val == "0":
+            start()
 #dra igång allt
 start()
