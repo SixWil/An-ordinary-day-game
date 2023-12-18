@@ -3,15 +3,16 @@
 #imports
 import os
 
+#Variabler
+global ending
+ending = []
 
 #resett
 def reset():
-    global kvar
-    kvar = []
+    os.system('cls')
 
-    global klar
-    klar = []
-
+    global intro
+    intro = ""
     global val
     val = ""
 
@@ -104,112 +105,133 @@ def reset():
 
 #Start
 försök = 0
+def tutorial():
+    global intro
+    os.system('cls')
+    while True:
+        intro = input("""
+        Hej! Välkommen till Sixten Wilde och Sigge Nilssons Spel:
+         ______                          _ _             _             
+        |  ____|                        | (_)           | |            
+        | |__   _ __   __   ____ _ _ __ | |_  __ _    __| | __ _  __ _ 
+        |  __| | '_ \  \ \ / / _` | '_ \| | |/ _` |  / _` |/ _` |/ _` |
+        | |____| | | |  \ V / (_| | | | | | | (_| | | (_| | (_| | (_| |
+        |______|_| |_|   \_/ \__,_|_| |_|_|_|\__, |  \__,_|\__,_|\__, |
+                                              __/ |               __/ |
+        (Körs i fullskärmsläge)              |___/               |___/ 
+        Spelet är designat för att köras flera gånger och därför kan du alltid starta om genom att skriva: 0.
+        För att välja en handling skriv dess siffra längst ned i konsollen (detta är i konsollen) och tryck på retur (ny rad knappen), till exempel:
 
-global intro
-os.system('cls')
-intro = input("""
-Hej! Välkommen till Sixten Wilde och Sigge Nilssons Spel:
-  ______                          _ _             _             
- |  ____|                        | (_)           | |            
- | |__   _ __   __   ____ _ _ __ | |_  __ _    __| | __ _  __ _ 
- |  __| | '_ \  \ \ / / _` | '_ \| | |/ _` |  / _` |/ _` |/ _` |
- | |____| | | |  \ V / (_| | | | | | | (_| | | (_| | (_| | (_| |
- |______|_| |_|   \_/ \__,_|_| |_|_|_|\__, |  \__,_|\__,_|\__, |
-                                       __/ |               __/ |
-                                      |___/               |___/ 
-Varje val assosieras med en siffra, för att välja det valet skriv dess siffra längst ner i konsollen (denna texten är i konsollen).
-Detta spelet är designat för att spelas flera gånger, för att starta om skriv 0
-""")
+        Starta: 1
+        """)
+        if intro == "1":
+            start()
 
 #starta och starta om programmet
 def start():
     "resettar programmet, initsierar sovrummet"
-
     while True:
+        global ending
+        global försök
+        försök = försök + 1
+
         reset()
-        os.system('cls')
         global spelare
         spelare = ["din själ"]
 
-        global försök
-        försök = försök + 1
         print(f"""
-        EN VANLIG DAG
-        försök {försök}
+        EN VANLIG DAG försök: {försök}
         """)
 
-        print(f"du har {spelare}")
+    #   Endings kvar: {18-{len(ending)}}/18
+    
 
         sovrum()
 
 # Sovrum
 def sovrum():
     "start rum, inget speciellt"
-    global vakenhet
-    global tid
+    while True:
+        global vakenhet
+        global tid
 
-    vakenhet = input("""
-    du vaknar, vad gör du?
+        vakenhet = input("""
+        du vaknar, vad gör du?
 
-    Somna om: 1.
-    Gå upp: 2.
-    """)
-    if vakenhet == "0":
-        start()
-    while vakenhet == "1":
-        if tid < 9:
-            tid = tid+1
-            print(f"du somnar om {tid} gången")
-            sovrum()
+        Somna om: 1.
+        Gå upp: 2.
+        """)
+        os.system('cls')
 
-        while tid == 9:
-            print("""
-            på labbet sitter en överarbetad arbetare och jobbar med en server,
-            han skulle egentligen fått åka hem för många timmar sedan.
-            på en annan server börjar en lampa blinka vilket betyder att något importerats?
-            han ställer sig upp för att se vad som hänt,
-            han märker inte att en sladd har virat sig runt hans ben,
-            när han går rycks den ur servern han jobbat på.
-            Servern med namnet "vintergatan" slocknar.
-            """)
-            global val
-            val = input("""
-            Ending: Oopsy!
-        
-            börja om: 0
-            """)
-            if val == "0":
-                start()
-        
-    while vakenhet == "2":
-        while 5 > tid > 2:
-            print("""
-            Du vaknar i nån slags pod, en alien märker att du vaknat.
-            Det trycker på en knapp och metaliska klor kommer ut ur väggarna... och in i dig.
-            """)
-            val = input("""
-            Ending: skördad
-        
-            börja om: 0
-            """)
-            if val == "0":
-                start()
+        if vakenhet == "0":
+            start()
+        while vakenhet == "1":
+            if tid < 9:
+                tid = tid+1
+                print(f"""
+                du somnar om {tid} gången
+                """)
+                sovrum()
 
-        while tid > 4 :
-            print("""
-            Du vaknar på en grå planet täck av damm... det finns inget kvar.
-            """)
-            val = input("""
-            Ending: Wasteland
-        
-            börja om: 0
-            """)
-            if val == "0":
-                start()
-        
-        if tid < 3:
-            print("du går till köket för att äta frukost")
-            köket()
+            while tid == 9:
+                print("""
+                på labbet sitter en överarbetad arbetare och jobbar med en server,
+                han skulle egentligen fått åka hem för många timmar sedan.
+                på en annan server börjar en lampa blinka vilket betyder att något importerats?
+                han ställer sig upp för att se vad som hänt,
+                han märker inte att en sladd har virat sig runt hans ben,
+                när han går rycks den ur servern han jobbat på.
+                Servern med namnet "vintergatan" slocknar.
+                """)
+                global val
+                global ending
+                if ending.count("Oopsy!") == 0:
+                    ending = ending + ["Oopsy!"]
+                val = input(f"""
+                ({len(ending)}/18)
+                Ending: Oopsy!
+                
+                börja om: 0
+                """)
+                if val == "0":
+                    start()
+            
+        while vakenhet == "2":
+            print("du har snoozat så länge att världen omkring dig har förändrats")
+            while 5 > tid > 2:
+                print("""
+                Du vaknar i nån slags pod, en alien märker att du vaknat.
+                Det trycker på en knapp och metaliska klor kommer ut ur väggarna... och in i dig.
+                """)
+                if ending.count("skördad") == 0:
+                    ending = ending + ["skördad"]
+                val = input(f"""
+                ({len(ending)}/18)
+                Ending: skördad
+            
+                börja om: 0
+                """)
+                if val == "0":
+                    start()
+
+            while tid > 4 :
+                print("""
+                Du vaknar på en grå planet täck av damm... det finns inget kvar.
+                """)
+                if ending.count("Wasteland") == 0:
+                    ending = ending + ["Wasteland"]
+                val = input(f"""
+                ({len(ending)}/18)
+                Ending: Wasteland
+            
+                börja om: 0
+                """)
+                if val == "0":
+                    start()
+            
+            if tid < 3:
+                print("du går till köket för att äta frukost")
+                köket()
 #Köket
 def köket():
     "köket, här kan du välja frukost, har liten effekt på spelets slut"
@@ -225,6 +247,7 @@ def köket():
     Mackan:             2
     kellogs cornflakes™: 3
     """)
+    os.system('cls')
     if frukost == "0":
         start()
 
@@ -252,6 +275,7 @@ def köket():
             Quit while youre ahead:   1
             Drick gift (som en idiot) 2
             """)
+            os.system('cls')
 
             if tunnan == "0":
                 start()
@@ -273,13 +297,18 @@ def hallen():
         gå ut på äventyr: 2
         stanna hemma:     3
         """)
+    os.system('cls')
 
     if dagsplan == "0":
         start()
     while dagsplan == "3":
         print("Du stannar hemma och chillar hela dagen")
         global val
-        val = input("""
+        global ending
+        if ending.count("Gött!") == 0:
+            ending = ending + ["Gött!"]
+        val = input(f"""
+            ({len(ending)}/18)
             Ending: Gött!
         
             börja om: 0
@@ -296,6 +325,7 @@ def hallen():
         inbrott:     1
         gå hem igen: 2
         """)
+        os.system('cls')
         if skolval == "0":
             start()
         if skolval == "2":
@@ -318,6 +348,7 @@ def skolan():
     fortsätt frammåt: 2
     Biblioteket:      3
     """)
+    os.system('cls')
     if koridor == "0":
         start()
     if koridor == "1":
@@ -331,11 +362,16 @@ def skolan():
         Ge upp:                1
         psychological warfare: 2
         """)
+        os.system('cls')
         if läraren == "0":
             start()
         while läraren == "1":
             global val
-            val = input("""
+            global ending
+            if ending.count("Kvarsittning") == 0:
+                ending = ending + ["Kvarsittning"]
+            val = input(f"""
+            ({len(ending)}/18)
             Ending: Kvarsittning
         
             börja om: 0
@@ -347,7 +383,10 @@ def skolan():
             for i in spelare:
                 if i == "inteligens":
                     print("du är inte korkad nog att besegra läraren")
-                    val = input("""
+                    if ending.count("Kvarsittning") == 0:
+                        ending = ending + ["Kvarsittning"]
+                    val = input(f"""
+                    ({len(ending)}/18)
                     Ending: Kvarsittning
                 
                     börja om: 0
@@ -356,7 +395,10 @@ def skolan():
                         start()
                 
             print("du säger något så dumt att lärarens huvud exploderar")
-            val = input("""
+            if ending.count("Fängelse") == 0:
+                ending = ending + ["Fängelse"]
+            val = input(f"""
+            ({len(ending)}/18)
             Ending: Fängelse
         
             börja om: 0
@@ -373,56 +415,89 @@ def skolan():
 #biblioteket
 def biblioteket():
     "läs 3 böcker för att bli smart, läser du 10 kommer bibliotikaren"
+    global läst
     global böcker
-    böcker = input("""
-    Du sätter dig i bibloteket
+    while True:
+        böcker = input(f"""
+        Du sätter dig i bibloteket
 
-    läs böcker en stund: 1
-    lämna biblioteket:   2
-    """)
-    if böcker == "0":
-        start()
-    if böcker == "2":
-        skolan()
-    if böcker == "1":
-        global läst
-        läst = läst +1
-        print(f"""
-        du har läst böcker i {läst} stund(er)
+        läs:               1
+        lämna biblioteket: 2
         """)
-        if läst == 3:
-            global spelare
-            spelare = spelare + ["inteligens"]
-            print(f"du har {spelare}")
-        if läst != 10:
-            biblioteket()
-        if läst == 10:
-            global respekt
-            respekt = input("""
-            Ur en hög böcker vaknar en biblotikarie, du får inte vara här idag
-            BOSS FIGHT: biblotikarien
+        os.system('cls')
 
-            var tyst i bilbioteket: 2
-            skrik och slamra:       3
+        if böcker == "0":
+            start()
+
+        if böcker == "2":
+            skolan()
+
+        if böcker == "1":
+            läst = läst + 1
+            print(f"""
+            du har läst i {läst} stund(er)
             """)
-            if respekt == "0":
-                start()
-            if respekt == "2":
-                print("""
-                "eh, du läser ju faktiskt riktiga böcker"
-                hon låter dig slippa undan
-                """)
-                skolan()
-            if respekt == "3":
-                val = input("""
-                din ligism gör att biblioteket reagerar våldamt,
-                en hylla tippar över och krossar dig
-                Ending: karma
             
-                börja om: 0
+            while läst == 3:
+                global spelare
+                if spelare.count("inteligens") == 0:
+                    spelare = spelare + ["inteligens"]
+
+                print(f"""
+                du har läst klart boken.
+                du har: {spelare}
                 """)
-                if val == "0":
-                    start()  
+
+                global nörd
+                nörd = input("""
+                Vill du läsa mer eller lämna biblioteket?
+                Lämna: 2
+                Fortsätt: 3
+                """)
+                os.system('cls')
+
+                if nörd == "2":
+                    skolan()
+                if nörd == "3":
+                    läst = läst + 1
+                    print(f"""
+                    du har läst böcker i {läst} stund(er)
+                    """)
+                
+            if läst != 10:
+                biblioteket()
+            if läst == 10:
+                global respekt
+                respekt = input("""
+                Ur en hög böcker vaknar en biblotikarie, du får inte vara här idag
+                BOSS FIGHT: biblotikarien
+
+                var tyst i bilbioteket: 2
+                skrik och slamra:       3
+                """)
+                os.system('cls')
+                if respekt == "0":
+                    start()
+                if respekt == "2":
+                    print("""
+                    "eh, du läser ju faktiskt riktiga böcker"
+                    hon låter dig slippa undan
+                    """)
+                    skolan()
+                if respekt == "3":
+                    global ending
+                    if ending.count("karma") == 0:
+                        ending = ending + ["karma"]
+                    val = input(f"""
+                    din ligism gör att biblioteket reagerar våldamt,
+                    en hylla tippar över och krossar dig
+                    ({len(ending)}/18)
+                    Ending: karma
+                
+                    börja om: 0
+                    """)
+                    if val == "0":
+                        start()  
 
 #övergångstället
 def gatan():
@@ -434,11 +509,16 @@ def gatan():
     Gå över: 1
     Vänta : 2
     """)
+    os.system('cls')
     if trafik == "0":
         start()
     while trafik == "1":
         global val
-        val = input("""
+        global ending
+        if ending.count("påkörd") == 0:
+            ending = ending + ["påkörd"]
+        val = input(f"""
+            ({len(ending)}/18)
             Ending: påkörd
         
             börja om: 0
@@ -460,12 +540,17 @@ def parken():
     Staden: 2
     Stanna: 3
     """)
+    os.system('cls')
     if riktning == "0":
         start()
     while riktning == "3":
         global val
-        val = input("""
+        global ending
+        if ending.count("Mental health") == 0:
+            ending = ending + ["Mental health"]
+        val = input(f"""
         du sitter och njuter av solens värme och fåglarnas dova bakgrunds tvitter
+        ({len(ending)}/18)
         Ending: Mental health
     
         börja om: 0
@@ -491,6 +576,7 @@ def grottan():
     höger:    2
     vänster:  1
     """)
+    os.system('cls')
     if tunnel == "0":
         start()
     if tunnel == "2":
@@ -510,6 +596,7 @@ def borgen():
     inbrott: 2
     kolla på kristallen: 3
     """)
+    os.system('cls')
     if inspektion == "0":
         start()
     if inspektion == "1":
@@ -532,6 +619,7 @@ def borgen():
                 återvänd: 1
                 inbrott: 2
                 """)
+            os.system('cls')
             if inspektion == "0":
                 start()
             global räkning
@@ -545,6 +633,7 @@ def borgen():
                 återvänd: 1
                 inbrott: 2
                 """)
+            os.system('cls')
             if inspektion == "0":
                 start()
     while inspektion == "2":
@@ -565,11 +654,16 @@ def borgen():
         lökig andedräkt:        2
         träpåle i dess hjärta: 3
         """)
+        os.system('cls')
         if vampyren == "0":
             start()
         if vampyren == "1":
             global val
-            val = input("""
+            global ending
+            if ending.count("upäten av vampyr") == 0:
+                ending = ending + ["upäten av vampyr"]
+            val = input(f"""
+            ({len(ending)}/18)
             Ending: upäten av vampyr
         
             börja om: 0
@@ -578,8 +672,11 @@ def borgen():
                 start()
 
         if vampyren == "2":
-            val = input("""
+            if ending.count("upäten av vampyr") == 0:
+                ending = ending + ["upäten av vampyr"]
+            val = input(f"""
             att vampyrer dör av lök är en myt.
+            ({len(ending)}/18)
             Ending: upäten av vampyr
         
             börja om: 0
@@ -599,6 +696,7 @@ def borgen():
                 ta grejerna:    1
                 lämna grejerna: 2
                 """)
+                os.system('cls')
                 if stash == "0":
                     start()
                 if stash == "1":
@@ -626,9 +724,13 @@ def borgen():
                         gå hem:       1
                         andra sidan:  2
                         """)
+                        os.system('cls')
             else:
-                val = input("""
+                if ending.count("upäten av vampyr") == 0:
+                    ending = ending + ["upäten av vampyr"]
+                val = input(f"""
                 du har ingen träpåle
+                ({len(ending)}/18)
                 Ending: upäten av vampyr
             
                 börja om: 0
@@ -643,14 +745,21 @@ def borgen():
                     dina nya vampyr krafter låter dig ducka undan från skotten något skutit mot dig,
                     bara en bra stund efter du flytt in i skogen inser du att din hud fräter,
                     """)
-                    val = input("""
+                    if ending.count("vampyr") == 0:
+                        ending = ending + ["vampyr"]
+                    val = input(f"""
+                        ({len(ending)}/18)
                         Ending: vampyr
                     
                         börja om: 0
                         """)
                     if val == "0":
                         start() 
-                else: val = input("""
+                else:
+                    if ending.count("skuten") == 0:
+                        ending = ending + ["skuten"]
+                    val = input(f"""
+                    ({len(ending)}/18)
                     Ending: skuten
                 
                     börja om: 0
@@ -676,14 +785,19 @@ def mötesplattsen():
         genom gallret:    1
         fortsätt frammåt: 2
         """)
+        os.system('cls')
         if antiklimax == "0":
             start()
         while antiklimax == "1":
-            val = input("""
+            global ending
+            if ending.count("MEH!") == 0:
+                ending = ending + ["MEH!"]
+            val = input(f"""
             du förvandlar dig till fladdermöss och flyger igenom gallret,
             på andra sidan ser du en skyllt där det står:
             "DEVELOPER NOTE: här finns det inget"
             du dog av antiklimax
+            ({len(ending)}/18)
             Ending: MEH!
         
             börja om: 0
@@ -713,12 +827,17 @@ def kloaken():
         pistol: 5
         vampyr kraft: 6
         """)
+        os.system('cls')
         if gurg == "0":
             start()
         while gurg == "1":
-            val = input("""
+            global ending
+            if ending.count("upäten av gurg") == 0:
+                ending = ending + ["upäten av gurg"]
+            val = input(f"""
             Motstånd är meningslöst,
             Gurg äter up dig,
+            ({len(ending)}/18)
             Ending: upäten av gurg
         
             börja om: 0
@@ -726,19 +845,25 @@ def kloaken():
             if val == "0":
                 start()
         while gurg == "2":
-            val = input("""
+            if ending.count("upäten av gurg") == 0:
+                ending = ending + ["upäten av gurg"]
+            val = input(f"""
             Motstånd är meningslöst,
             Gurg äter up dig,
+            ({len(ending)}/18)
             Ending: upäten av gurg
-        
+
             börja om: 0
             """)
             if val == "0":
                 start()
         while gurg == "3":
-            val = input("""
+            if ending.count("upäten av gurg") == 0:
+                ending = ending + ["upäten av gurg"]
+            val = input(f"""
             Motstånd är meningslöst,
             Gurg äter up dig,
+            ({len(ending)}/18)
             Ending: upäten av gurg
         
             börja om: 0
@@ -746,11 +871,14 @@ def kloaken():
             if val == "0":
                 start()
         while gurg == "5":
-            val = input("""
+            if ending.count("upäten av gurg") == 0:
+                ending = ending + ["upäten av gurg"]
+            val = input(f"""
             Du plockar fram pistolen och skuter villt mot varelsen,
             du har avlossat alla skott i pistolen, några kulor träffar och gör skada... inte många nog.
             Motstånd är meningslöst,
             Gurg äter up dig,
+            ({len(ending)}/18)
             Ending: upäten av gurg
         
             börja om: 0
@@ -759,9 +887,12 @@ def kloaken():
                 start()
 
         while gurg == "6":
-            val = input("""
+            if ending.count("upäten av gurg") == 0:
+                ending = ending + ["upäten av gurg"]
+            val = input(f"""
             du flyger fram och biter gurg i halsen och ger honom vampirism,
             han biter dig i halsen tillbaka och ger dig död,
+            ({len(ending)}/18)
             Ending: upäten av gurg
         
             börja om: 0
@@ -779,6 +910,7 @@ def kloaken():
             vänta: 1
             SKUT:  2
             """)
+            os.system('cls')
 
             if romans == "0":
                 start()  
@@ -795,11 +927,15 @@ def kloaken():
                 acceptera: 1
                 neka:      2
                 """)
+                os.system('cls')
                 if agent == "0":
                     start()
                 while agent == "1":
-                    val = input("""
+                    if ending.count("Bödeln") == 0:
+                        ending = ending + ["Bödeln"]
+                    val = input(f"""
                     "mycket bra val"
+                    ({len(ending)}/18)
                     Ending: Bödeln
                 
                     börja om: 0
@@ -812,9 +948,12 @@ def kloaken():
                     Boss fight: agent K
 
                     """)
-                    input("""
+                    if ending.count("avrättad") == 0:
+                        ending = ending + ["avrättad"]
+                    input(f"""
                     PANG! *det isar i bröstet* innan du hinner reagera har agenten skutit dig...
                     "mycket dåligt val"
+                    ({len(ending)}/18)
                     Ending: avrättad
                 
                     börja om: 0
@@ -830,6 +969,7 @@ def kloaken():
                 acceptera:     1
                 neka:          2
                 """)
+                os.system('cls')
                 if gurg_the_groom == "0":
                     start()
                 while gurg_the_groom == "1":
@@ -842,12 +982,16 @@ def kloaken():
                         utforska: 1
                         återvänd: 2
                         """)
+                        os.system('cls')
                         if sim == "0":
                             start()
                         if sim == "1":
-                            input("""
+                            if ending.count("destroyer of worlds") == 0:
+                                ending = ending + ["destroyer of worlds"]
+                            input(f"""
                             Det tar en stund att åka genom sladdarna,
                             när du väl anländer har den förra servern slocknat.
+                            ({len(ending)}/18)
                             Ending: destroyer of worlds
                         
                             börja om: 0
@@ -857,8 +1001,11 @@ def kloaken():
                         if sim=="2":
                             print("du återvänder till jorden")
                             break
-                    input("""
+                    if ending.count("gurg jn") == 0:
+                        ending = ending + ["gurg jn"]
+                    input(f"""
                     du och gurg lever lyckliga i alla era dagar.
+                    ({len(ending)}/18)
                     Ending: Ordinary day 2?.. gurg jn the swamp monster vampire?
                 
                     börja om: 0
@@ -874,15 +1021,19 @@ def kloaken():
                     vänta: 1
                     SKUT: 2
                     """)
+                    os.system('cls')
                     if nekad == "0":
                         start()
                     while nekad == "1":
                         print("""
                         när han inser vad du gjort blir han förargad
                         """)
-                        val = input("""
+                        if ending.count("upäten av gurg") == 0:
+                            ending = ending + ["upäten av gurg"]
+                        val = input(f"""
                         Motstånd är meningslöst,
                         Gurg äter up dig,
+                        ({len(ending)}/18)
                         Ending: upäten av gurg
                     
                         börja om: 0
@@ -900,9 +1051,13 @@ def kloaken():
                         acceptera: 1
                         neka:      2
                         """)
+                        os.system('cls')
                         while agent == "1":
-                            val = input("""
+                            if ending.count("Bödeln") == 0:
+                                ending = ending + ["Bödeln"]
+                            val = input(f"""
                             "mycket bra val"
+                            ({len(ending)}/18)
                             Ending: Bödeln
                         
                             börja om: 0
@@ -915,9 +1070,10 @@ def kloaken():
                             Boss fight: agent K
 
                             """)
-                            input("""
+                            input(f"""
                             PANG! *det isar i bröstet* innan du hinner reagera har agenten skutit dig...
                             "mycket dåligt val"
+                            ({len(ending)}/18)
                             Ending: avrättad
                         
                             börja om: 0
@@ -936,15 +1092,19 @@ def kloaken():
         blockera:  2
         dodge'a:   3
         """)
-        val = input("""
+        os.system('cls')
+        if ending.count("upäten av gurg") == 0:
+            ending = ending + ["upäten av gurg"]
+        val = input(f"""
         Motstånd är meningslöst,
         Gurg äter up dig,
+        ({len(ending)}/18)
         Ending: upäten av gurg
-    
+
         börja om: 0
         """)
         if val == "0":
             start()
 
 #dra igång allt
-start()
+tutorial()
