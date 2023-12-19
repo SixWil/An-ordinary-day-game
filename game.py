@@ -1,4 +1,5 @@
-# test
+# programmet är skrivet lite som en rysk docka i att det är funktioner i funktioner i funktioner,
+# detta så att progrommet alltid ska ha någonting att falla tillbaka till om användaren ger ett oregistererat värde till en input.
 
 #imports
 import os
@@ -120,7 +121,7 @@ def tutorial():
                                               __/ |               __/ |
         (Körs i fullskärmsläge)              |___/               |___/ 
         Spelet är designat för att köras flera gånger och därför kan du alltid starta om genom att skriva: 0.
-        För att välja en handling skriv dess siffra längst ned i konsollen (detta är i konsollen) och tryck på retur (ny rad knappen), till exempel:
+        För att välja en handling skriv dess siffra längst ned i konsollen (detta är i konsollen) och tryck på return (ny rad knappen), till exempel:
 
         Starta: 1
         """)
@@ -140,7 +141,8 @@ def start():
         spelare = ["din själ"]
 
         print(f"""
-        EN VANLIG DAG försök: {försök}
+        EN VANLIG DAG
+        försök: {försök}
         """)
 
     #   Endings kvar: {18-{len(ending)}}/18
@@ -197,7 +199,8 @@ def sovrum():
                     start()
             
         while vakenhet == "2":
-            print("du har snoozat så länge att världen omkring dig har förändrats")
+            if tid > 3:
+                print("du har snoozat så länge att världen omkring dig har förändrats")
             while 5 > tid > 2:
                 print("""
                 Du vaknar i nån slags pod, en alien märker att du vaknat.
@@ -338,7 +341,7 @@ def hallen():
 
 #skolan
 def skolan():
-    "i skolan kan du upnå inteligens, det kommer du behöva senare, går du för långt får du en ending"
+    "i skolan kan du uppnå inteligens, det kommer du behöva senare, går du för långt får du en ending"
     global val
     global koridor
     koridor = input("""
@@ -526,7 +529,7 @@ def gatan():
         if val == "0":
             start()
     while trafik == "2":
-        print("Vilken tur att du väntade, den föraren var in lämpad för bilar")
+        print("Vilken tur att du väntade, den föraren var inte lämpad för bilar")
         parken()
 
 #vägvalet
@@ -534,7 +537,7 @@ def parken():
     "här får du välja riktning igen, korrekt är grottan först sedan staden, stanna ger en ending"
     global riktning
     riktning = input("""
-    du står nu i en park, mot skogen finns en grotta, mot staden finns en öppning till undermarken, vart vill du gå?
+    du står nu i en park, mot skogen finns en grotta, mot andra sidan finns en öppning till tunnlarna under staden, vart vill du gå?
 
     grottan: 1
     Staden: 2
@@ -810,6 +813,7 @@ def mötesplattsen():
 #Stadens tunnlar
 def kloaken():
     "under staden, du möter gurg, detta är sista scenen i spelet (om du gjort rätt)"
+    global val
     print("""
     du fortsätter frammåt till du plöttsligt ser en siluett av vad du tror är en man, men något är off,
     det ser ut som att han smälter. Du snubblar och ljudet du gör för att återfå balansen ekar genom tunneln,
@@ -1003,13 +1007,14 @@ def kloaken():
                             break
                     if ending.count("gurg jn") == 0:
                         ending = ending + ["gurg jn"]
-                    input(f"""
+                    val = input(f"""
                     du och gurg lever lyckliga i alla era dagar.
                     ({len(ending)}/18)
                     Ending: Ordinary day 2?.. gurg jn the swamp monster vampire?
                 
                     börja om: 0
                     """)
+                    
                     if val == "0":
                         start()  
 
