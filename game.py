@@ -267,15 +267,15 @@ def köket():
     if frukost == "0":
         start()
 
-    if frukost == "2":
+    while frukost == "2":
         print("Mycket dåligt val")
         hallen()
 
-    if frukost == "3":
+    while frukost == "3":
         print("Mycket bra val")
         hallen()
 
-    if frukost == "1":
+    while frukost == "1":
         global droger
         for i in droger:
             if i == "gas":
@@ -295,9 +295,9 @@ def köket():
 
             if tunnan == "0":
                 start()
-            if tunnan == "1":
+            while tunnan == "1":
                 köket()
-            if tunnan == "2":
+            while tunnan == "2":
                 global spelare
                 spelare = spelare + ["cancer"]
                 print(f"du har {spelare}")
@@ -345,12 +345,12 @@ def hallen():
         os.system('cls')
         if skolval == "0":
             start()
-        if skolval == "2":
+        while skolval == "2":
             hallen()
-        if skolval == "1":
+        while skolval == "1":
             skolan()
 
-    if dagsplan == "2":
+    while dagsplan == "2":
         gatan()
 
 #skolan
@@ -369,9 +369,9 @@ def skolan():
     os.system('cls')
     if koridor == "0":
         start()
-    if koridor == "1":
+    while koridor == "1":
         hallen()
-    if koridor == "2":
+    while koridor == "2":
         print("du stormar in ett kontor, en lärare har hört dig och kommer ut ur sitt näste.")
         global läraren
         läraren = input("""
@@ -422,11 +422,10 @@ def skolan():
             → """)
             if val == "0":
                 start()
-    if koridor == "3":
-        for i in spelare:
-            if i == "inteligens":
-                print("det finns inget mer att lära sig i biblioteket")
-                skolan()
+    while koridor == "3":
+        if spelare.count("inteligens") == 1:
+            print("det finns inget mer att lära sig i biblioteket")
+            skolan()
         else: biblioteket()
 
 #biblioteket
@@ -447,7 +446,7 @@ def biblioteket():
         if böcker == "0":
             start()
 
-        if böcker == "2":
+        while böcker == "2":
             skolan()
 
         if böcker == "1":
@@ -474,7 +473,7 @@ def biblioteket():
                 → """)
                 os.system('cls')
 
-                if nörd == "2":
+                while nörd == "2":
                     skolan()
                 if nörd == "3":
                     läst = läst + 1
@@ -482,9 +481,9 @@ def biblioteket():
                     du har läst böcker i {läst} stund(er)
                     """)
                 
-            if läst != 10:
+            while läst != 10:
                 biblioteket()
-            if läst == 10:
+            while läst == 10:
                 global respekt
                 respekt = input("""
                 Ur en hög böcker vaknar en biblotikarie, du får inte vara här idag
@@ -502,7 +501,7 @@ def biblioteket():
                     hon låter dig slippa undan
                     """)
                     skolan()
-                if respekt == "3":
+                while respekt == "3":
                     global death
                     if death.count("karma") == 0:
                         death = death + ["karma"]
@@ -593,15 +592,15 @@ def grottan():
     efter ett tag delar grottan sig i två,
     vart vill du gå?
 
-    höger mot under skogen:    2
     vänster mot under staden:  1
+    höger mot under skogen:    2
     → """)
     os.system('cls')
     if tunnel == "0":
         start()
-    if tunnel == "2":
+    while tunnel == "2":
         borgen()
-    if tunnel == "1":
+    while tunnel == "1":
         mötesplattsen()
 
 #vampyrens lya
@@ -619,7 +618,7 @@ def borgen():
     os.system('cls')
     if inspektion == "0":
         start()
-    if inspektion == "1":
+    while inspektion == "1":
         grottan()
     while inspektion == "3":
         global death
@@ -632,7 +631,8 @@ def borgen():
             du är smart nog att inse att kristallen är gjord av trä,
             detta är ju inte alls en kristall, det är en påle.
             """)
-            spelare = spelare + ["träpåle"]
+            if spelare.count("träpåle") == 0:
+                spelare = spelare + ["träpåle"]
             print(f"du har {spelare}")
             inspektion = input("""
                 vad vill du?
@@ -663,7 +663,8 @@ def borgen():
         innan du hinner reagera flyger något från skuggorna mot dig,
         det bränner till i din hals vilket sprider sig genom dina blodådror till hela kroppen
         """)
-        spelare = spelare + ["vampirism"]
+        if spelare.count("vampirism") == 0:
+            spelare = spelare + ["vampirism"]
         print(f"du har {spelare}")
         global vampyren
 
@@ -677,7 +678,7 @@ def borgen():
         os.system('cls')
         if vampyren == "0":
             start()
-        if vampyren == "1":
+        while vampyren == "1":
             global val
             global death
             if death.count("upäten av vampyr") == 0:
@@ -691,7 +692,7 @@ def borgen():
             if val == "0":
                 start()
 
-        if vampyren == "2":
+        while vampyren == "2":
             if death.count("upäten av vampyr") == 0:
                 death = death + ["upäten av vampyr"]
             val = input(f"""
@@ -719,7 +720,7 @@ def borgen():
                 os.system('cls')
                 if stash == "0":
                     start()
-                if stash == "1":
+                while stash == "1":
                     global droger
                     droger = droger + ["piller"]
                     print(f"du har tagit drogerna {droger}")
@@ -734,17 +735,26 @@ def borgen():
                     gå hem:                                 1
                     kolla på andra sidan mot under staden:  2
                     → """)
+                    while tunnel == "2":
+                        mötesplattsen()
+                    while tunnel == "1":
+                        flykt()
+
                     if tunnel == "0":
                         start()
 
-                    if stash == "2":
-                        tunnel = input("""
-                        vill du kika på andra sidan grottan eller vill du gå hem?
+                while stash == "2":
+                    tunnel = input("""
+                    vill du kika på andra sidan grottan eller vill du gå hem?
 
-                        gå hem:                                 1
-                        kolla på andra sidan mot under staden:  2
-                        → """)
+                    gå hem:                                 1
+                    kolla på andra sidan mot under staden:  2
+                    → """)
+                    while tunnel == "2":
+                        mötesplattsen()
                         os.system('cls')
+                    while tunnel == "1":
+                        flykt()
             else:
                 if death.count("upäten av vampyr") == 0:
                     death = death + ["upäten av vampyr"]
@@ -758,36 +768,36 @@ def borgen():
                 if val == "0":
                     start()
             
-            while tunnel == "1":
-                print("du har sätt något du inte borde ha sätt")
-                if spelare.count("vampirism") > 0: 
-                    print("""
-                    dina nya vampyr krafter låter dig ducka undan från skotten något skutit mot dig,
-                    bara en bra stund efter din flytkt in i skogen inser du att din hud fräter,
-                    """)
-                    if ending.count("vampyr") == 0:
-                        ending = ending + ["vampyr"]
-                    val = input(f"""
-                        
-                        Ending: vampyr
-                        {len(ending)}/10 endings hittade
-                        börja om: 0
-                        → """)
-                    if val == "0":
-                        start() 
-                else:
-                    if death.count("skuten") == 0:
-                        death = death + ["skuten"]
-                    val = input(f"""
-                    
-                    Death: skuten
-                    {len(death)}/10 Deaths hittade
-                    börja om: 0
-                    → """)
-                if val == "0":
-                    start()
-            if tunnel == "2":
-                mötesplattsen()
+def flykt():
+    global death
+    global ending
+    print("du har sätt något du inte borde ha sätt")
+    while spelare.count("vampirism") > 0: 
+        print("""
+        dina nya vampyr krafter låter dig ducka undan från skotten något skutit mot dig,
+        bara en bra stund efter din flytkt in i skogen inser du att din hud fräter,
+        """)
+        if ending.count("vampyr") == 0:
+            ending = ending + ["vampyr"]
+        val = input(f"""
+            
+            Ending: vampyr
+            {len(ending)}/8 endings hittade
+            börja om: 0
+            → """)
+        if val == "0":
+            start() 
+        else:
+            if death.count("skuten") == 0:
+                death = death + ["skuten"]
+            val = input(f"""
+            
+            Death: skuten
+            {len(death)}/10 Deaths hittade
+            börja om: 0
+            → """)
+        if val == "0":
+            start()
 # där tunnlarna och grottorna möts
 def mötesplattsen():
     "där grottan och kloaken möts, är du vampyr kan du gå igenom gallret och få en ending"
@@ -798,7 +808,7 @@ def mötesplattsen():
     global death
     global galler
     galler = spelare.count("vampirism")
-    if galler > 0:
+    while galler > 0:
         global antiklimax
         antiklimax = input("""
         du kan använda dina vampyr krafter för att ta din igenom gallren, eller så kan du förtsätta frammåt
@@ -997,7 +1007,7 @@ def kloaken():
                 if gurg_the_groom == "0":
                     start()
                 while gurg_the_groom == "1":
-                    while droger.count("gas") > 0:
+                    if droger.count("gas") > 0:
                         global sim
                         sim = input("""
                         du har tagit alla tre droger och har därför blivigt uplyst,
@@ -1009,7 +1019,7 @@ def kloaken():
                         os.system('cls')
                         if sim == "0":
                             start()
-                        if sim == "1":
+                        while sim == "1":
                             if ending.count("destroyer of worlds") == 0:
                                 ending = ending + ["destroyer of worlds"]
                             val = input(f"""
@@ -1024,7 +1034,7 @@ def kloaken():
                                 start()
                         if sim=="2":
                             print("du återvänder till jorden")
-                            break
+                            droger = []
                     if ending.count("gurg jn") == 0:
                         ending = ending + ["gurg jn"]
                     val = input(f"""
@@ -1120,18 +1130,19 @@ def kloaken():
         dodge'a:   3
         → """)
         os.system('cls')
-        if death.count("upäten av gurg") == 0:
-            death = death + ["upäten av gurg"]
-        val = input(f"""
-        Motstånd är meningslöst,
-        Gurg äter up dig,
-        
-        death: upäten av gurg
-    {len(death)}/8 deaths hittade
-        börja om: 0
-        → """)
-        if val == "0":
-            start()
+        while True:
+            if death.count("upäten av gurg") == 0:
+                death = death + ["upäten av gurg"]
+            val = input(f"""
+            Motstånd är meningslöst,
+            Gurg äter up dig,
+            
+            death: upäten av gurg
+        {len(death)}/8 deaths hittade
+            börja om: 0
+            → """)
+            if val == "0":
+                start()
 
 #dra igång allt
 tutorial()
