@@ -198,11 +198,11 @@ def sovrum():
                 if ending.count("Oopsy!") == 0:
                     ending = ending + ["Oopsy!"]
                 val = input(f"""
-                ({len(ending)}/18)
-                Ending: Oopsy!
                 
+                Ending: Oopsy!
+                    {len(ending)}/18 endings hittade
                 börja om: 0
-                → → """)
+                → """)
                 if val == "0":
                     start()
             
@@ -217,11 +217,11 @@ def sovrum():
                 if ending.count("skördad") == 0:
                     ending = ending + ["skördad"]
                 val = input(f"""
-                ({len(ending)}/18)
+                
                 Ending: skördad
-            
+                {len(ending)}/18 endings hittade
                 börja om: 0
-                → → """)
+                → """)
                 if val == "0":
                     start()
 
@@ -232,11 +232,11 @@ def sovrum():
                 if ending.count("Wasteland") == 0:
                     ending = ending + ["Wasteland"]
                 val = input(f"""
-                ({len(ending)}/18)
+                
                 Ending: Wasteland
-            
+                {len(ending)}/18 endings hittade
                 börja om: 0
-                → → """)
+                → """)
                 if val == "0":
                     start()
             
@@ -319,11 +319,11 @@ def hallen():
         if ending.count("Gött!") == 0:
             ending = ending + ["Gött!"]
         val = input(f"""
-            ({len(ending)}/18)
+            
             Ending: Gött!
-        
+            {len(ending)}/18 endings hittade
             börja om: 0
-            → → """)
+            → """)
         if val == "0":
             start()
 
@@ -382,9 +382,9 @@ def skolan():
             if ending.count("Kvarsittning") == 0:
                 ending = ending + ["Kvarsittning"]
             val = input(f"""
-            ({len(ending)}/18)
+            
             Ending: Kvarsittning
-        
+            {len(ending)}/18 endings hittade
             börja om: 0
             → """)
             if val == "0":
@@ -396,9 +396,9 @@ def skolan():
                 if ending.count("Kvarsittning") == 0:
                     ending = ending + ["Kvarsittning"]
                 val = input(f"""
-                ({len(ending)}/18)
+                
                 Ending: Kvarsittning
-            
+                {len(ending)}/18 endings hittade
                 börja om: 0
                 → """)
                 if val == "0":
@@ -408,9 +408,9 @@ def skolan():
             if ending.count("Fängelse") == 0:
                 ending = ending + ["Fängelse"]
             val = input(f"""
-            ({len(ending)}/18)
+            
             Ending: Fängelse
-        
+            {len(ending)}/18 endings hittade
             börja om: 0
             → """)
             if val == "0":
@@ -501,9 +501,9 @@ def biblioteket():
                     val = input(f"""
                     din ligism gör att biblioteket reagerar våldamt,
                     en hylla tippar över och krossar dig
-                    ({len(ending)}/18)
+                    
                     Ending: karma
-                
+                    {len(ending)}/18 endings hittade
                     börja om: 0
                     → """)
                     if val == "0":
@@ -528,9 +528,9 @@ def gatan():
         if ending.count("påkörd") == 0:
             ending = ending + ["påkörd"]
         val = input(f"""
-            ({len(ending)}/18)
+            
             Ending: påkörd
-        
+            {len(ending)}/18 endings hittade
             börja om: 0
             → """)
         if val == "0":
@@ -560,9 +560,9 @@ def parken():
             ending = ending + ["Mental health"]
         val = input(f"""
         du sitter och njuter av solens värme och fåglarnas dova bakgrunds tvitter
-        ({len(ending)}/18)
+        
         Ending: Mental health
-    
+        {len(ending)}/18 endings hittade
         börja om: 0
         → """)
         if val == "0":
@@ -672,9 +672,9 @@ def borgen():
             if ending.count("upäten av vampyr") == 0:
                 ending = ending + ["upäten av vampyr"]
             val = input(f"""
-            ({len(ending)}/18)
+            
             Ending: upäten av vampyr
-        
+            {len(ending)}/18 endings hittade
             börja om: 0
             → """)
             if val == "0":
@@ -685,9 +685,9 @@ def borgen():
                 ending = ending + ["upäten av vampyr"]
             val = input(f"""
             att vampyrer dör av lök är en myt.
-            ({len(ending)}/18)
+            
             Ending: upäten av vampyr
-        
+            {len(ending)}/18 endings hittade
             börja om: 0
             → """)
             if val == "0":
@@ -739,9 +739,9 @@ def borgen():
                     ending = ending + ["upäten av vampyr"]
                 val = input(f"""
                 du har ingen träpåle
-                ({len(ending)}/18)
+                
                 Ending: upäten av vampyr
-            
+                {len(ending)}/18 endings hittade
                 börja om: 0
                 → """)
                 if val == "0":
@@ -757,9 +757,9 @@ def borgen():
                     if ending.count("vampyr") == 0:
                         ending = ending + ["vampyr"]
                     val = input(f"""
-                        ({len(ending)}/18)
+                        
                         Ending: vampyr
-                    
+                        {len(ending)}/18 endings hittade
                         börja om: 0
                         → """)
                     if val == "0":
@@ -768,9 +768,9 @@ def borgen():
                     if ending.count("skuten") == 0:
                         ending = ending + ["skuten"]
                     val = input(f"""
-                    ({len(ending)}/18)
+                    
                     Ending: skuten
-                
+                    {len(ending)}/18 endings hittade
                     börja om: 0
                     → """)
                 if val == "0":
@@ -806,9 +806,9 @@ def mötesplattsen():
             på andra sidan ser du en skyllt där det står:
             "DEVELOPER NOTE: här finns det inget"
             du dog av antiklimax
-            ({len(ending)}/18)
+            
             Ending: MEH!
-        
+            {len(ending)}/18 endings hittade
             börja om: 0
             → """)
             if val == "0":
@@ -847,9 +847,9 @@ def kloaken():
             val = input(f"""
             Motstånd är meningslöst,
             Gurg äter up dig,
-            ({len(ending)}/18)
+            
             Ending: upäten av gurg
-        
+            {len(ending)}/18 endings hittade
             börja om: 0
             → """)
             if val == "0":
@@ -860,9 +860,9 @@ def kloaken():
             val = input(f"""
             Motstånd är meningslöst,
             Gurg äter up dig,
-            ({len(ending)}/18)
+            
             Ending: upäten av gurg
-
+    {len(ending)}/18 endings hittade
             börja om: 0
             → """)
             if val == "0":
@@ -873,9 +873,9 @@ def kloaken():
             val = input(f"""
             Motstånd är meningslöst,
             Gurg äter up dig,
-            ({len(ending)}/18)
+            
             Ending: upäten av gurg
-        
+            {len(ending)}/18 endings hittade
             börja om: 0
             → """)
             if val == "0":
@@ -888,9 +888,9 @@ def kloaken():
             du har avlossat alla skott i pistolen, några kulor träffar och gör skada... inte många nog.
             Motstånd är meningslöst,
             Gurg äter up dig,
-            ({len(ending)}/18)
+            
             Ending: upäten av gurg
-        
+            {len(ending)}/18 endings hittade
             börja om: 0
             → """)
             if val == "0":
@@ -902,9 +902,9 @@ def kloaken():
             val = input(f"""
             du flyger fram och biter gurg i halsen och ger honom vampirism,
             han biter dig i halsen tillbaka och ger dig död,
-            ({len(ending)}/18)
+            
             Ending: upäten av gurg
-        
+            {len(ending)}/18 endings hittade
             börja om: 0
             → """)
             if val == "0":
@@ -945,9 +945,9 @@ def kloaken():
                         ending = ending + ["Bödeln"]
                     val = input(f"""
                     "mycket bra val"
-                    ({len(ending)}/18)
+                    
                     Ending: Bödeln
-                
+                    {len(ending)}/18 endings hittade
                     börja om: 0
                     → """)
                     if val == "0":
@@ -963,9 +963,9 @@ def kloaken():
                     input(f"""
                     PANG! *det isar i bröstet* innan du hinner reagera har agenten skutit dig...
                     "mycket dåligt val"
-                    ({len(ending)}/18)
+                    
                     Ending: avrättad
-                
+                    {len(ending)}/18 endings hittade
                     börja om: 0
                     → """)
                     if val == "0":
@@ -1001,9 +1001,9 @@ def kloaken():
                             input(f"""
                             Det tar en stund att åka genom sladdarna,
                             när du väl anländer har den förra servern slocknat.
-                            ({len(ending)}/18)
+                            
                             Ending: destroyer of worlds
-                        
+                            {len(ending)}/18 endings hittade
                             börja om: 0
                             → """)
                             if val == "0":
@@ -1015,9 +1015,9 @@ def kloaken():
                         ending = ending + ["gurg jn"]
                     val = input(f"""
                     du och gurg lever lyckliga i alla era dagar.
-                    ({len(ending)}/18)
+                    
                     Ending: Ordinary day 2?.. gurg jn the swamp monster vampire?
-                
+                    {len(ending)}/18 endings hittade
                     börja om: 0
                     → """)
                     
@@ -1044,9 +1044,9 @@ def kloaken():
                         val = input(f"""
                         Motstånd är meningslöst,
                         Gurg äter up dig,
-                        ({len(ending)}/18)
+                        
                         Ending: upäten av gurg
-                    
+                        {len(ending)}/18 endings hittade
                         börja om: 0
                         → """)
                         if val == "0":
@@ -1068,9 +1068,9 @@ def kloaken():
                                 ending = ending + ["Bödeln"]
                             val = input(f"""
                             "mycket bra val"
-                            ({len(ending)}/18)
+                            
                             Ending: Bödeln
-                        
+                            {len(ending)}/18 endings hittade
                             börja om: 0
                             → """)
                             if val == "0":
@@ -1084,9 +1084,9 @@ def kloaken():
                             input(f"""
                             PANG! *det isar i bröstet* innan du hinner reagera har agenten skutit dig...
                             "mycket dåligt val"
-                            ({len(ending)}/18)
+                            
                             Ending: avrättad
-                        
+                            {len(ending)}/18 endings hittade
                             börja om: 0
                             → """)
                             if val == "0":
@@ -1109,9 +1109,9 @@ def kloaken():
         val = input(f"""
         Motstånd är meningslöst,
         Gurg äter up dig,
-        ({len(ending)}/18)
+        
         Ending: upäten av gurg
-
+    {len(ending)}/18 endings hittade
         börja om: 0
         → """)
         if val == "0":
