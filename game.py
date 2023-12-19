@@ -147,25 +147,26 @@ def start():
     "resettar programmet, initsierar sovrummet"
     while True:
         global ending
+        global death
         global försök
         försök = försök + 1
 
         reset()
 
-        print(f"""
+        print(f"""(hittade avslut {len(ending)+len(death)}/18)
+
         EN VANLIG DAG
         försök: {försök}
         """)
-
-    #   Endings kvar: {18-{len(ending)}}/18
     
-
         sovrum()
 
 # Sovrum
 def sovrum():
     "start rum, inget speciellt"
     while True:
+        global ending
+        global death
         global vakenhet
         global tid
 
@@ -303,6 +304,7 @@ def köket():
                 hallen()
 #Hallen
 def hallen():
+    global ending
     "vilken ordning vill du utforska världen, korrekt är först skolan sedan äventyr, stanna hemma ger en ending"
     global dagsplan
     dagsplan = input("""
@@ -353,14 +355,15 @@ def hallen():
 
 #skolan
 def skolan():
+    global ending
     "i skolan kan du uppnå inteligens, det kommer du behöva senare, går du för långt får du en ending"
     global val
     global koridor
     koridor = input("""
-    du går runt i skolans koridorer, du kan fortsätta framåt, vika in till bilblioteket eller vända om.
+    du går runt i skolans koridorer, du kan fortsätta framåt in i ett kontor, vika in till bilblioteket, eller vända om.
 
-    Vänd om:          1
-    fortsätt frammåt: 2
+    Lämna skolan:     1
+    Kontor:           2
     Biblioteket:      3
     → """)
     os.system('cls')
@@ -395,7 +398,7 @@ def skolan():
                 start()
         while läraren == "2":
             global spelare
-            if spelare.count("inteligens") == 1:
+            while spelare.count("inteligens") == 1:
                 print("du är inte korkad nog att besegra läraren")
                 if ending.count("Kvarsittning") == 0:
                     ending = ending + ["Kvarsittning"]
@@ -429,6 +432,7 @@ def skolan():
 #biblioteket
 def biblioteket():
     "läs 3 böcker för att bli smart, läser du 10 kommer bibliotikaren"
+    global death
     global läst
     global böcker
     while True:
@@ -465,8 +469,8 @@ def biblioteket():
                 global nörd
                 nörd = input("""
                 Vill du läsa mer eller lämna biblioteket?
-                Lämna: 2
-                Fortsätt: 3
+                Lämna biblioteket: 2
+                Läs mer: 3
                 → """)
                 os.system('cls')
 
@@ -515,6 +519,7 @@ def biblioteket():
 
 #övergångstället
 def gatan():
+    global death
     "detta är bara för att retas, fyller ingen funktion alls."
     global trafik
     trafik = input("""
@@ -546,13 +551,14 @@ def gatan():
 #vägvalet
 def parken():
     "här får du välja riktning igen, korrekt är grottan först sedan staden, stanna ger en ending"
+    global ending
     global riktning
     riktning = input("""
     du står nu i en park, mot skogen finns en grotta, mot andra sidan finns en öppning till tunnlarna under staden, vart vill du gå?
 
-    grottan: 1
-    Staden: 2
-    Stanna: 3
+    Grottan i skogen:       1
+    Tunnlarna under Staden: 2
+    Stanna i parken:        3
     → """)
     os.system('cls')
     if riktning == "0":
@@ -587,8 +593,8 @@ def grottan():
     efter ett tag delar grottan sig i två,
     vart vill du gå?
 
-    höger:    2
-    vänster:  1
+    höger mot under skogen:    2
+    vänster mot under staden:  1
     → """)
     os.system('cls')
     if tunnel == "0":
@@ -606,9 +612,9 @@ def borgen():
     tillslut kommer du fram till en borg i grottan,
     utanför ligger en kristall, vad vill du?
 
-    återvänd: 1
-    inbrott: 2
-    kolla på kristallen: 3
+    återvänd åt andra hållet i grottan: 1
+    inbrott i borgen:                   2
+    kolla på kristallen:                3
     → """)
     os.system('cls')
     if inspektion == "0":
@@ -616,6 +622,8 @@ def borgen():
     if inspektion == "1":
         grottan()
     while inspektion == "3":
+        global death
+        global ending
         global spelare
         global hittad
         hittad = spelare.count("inteligens")
@@ -627,11 +635,10 @@ def borgen():
             spelare = spelare + ["träpåle"]
             print(f"du har {spelare}")
             inspektion = input("""
-                tillslut kommer du fram till en borg i grottan,
                 vad vill du?
 
-                återvänd: 1
-                inbrott: 2
+                återvänd åt andra hållet i grottan: 1
+                inbrott i borgen:                   2
                 → """)
             os.system('cls')
             if inspektion == "0":
@@ -644,8 +651,8 @@ def borgen():
                 tillslut kommer du fram till en borg i grottan,
                 utanför ligger en kristall, vad vill du?
 
-                återvänd: 1
-                inbrott: 2
+                återvänd åt andra hållet i grottan: 1
+                inbrott i borgen:                   2
                 → """)
             os.system('cls')
             if inspektion == "0":
@@ -703,7 +710,7 @@ def borgen():
             if spelare.count("träpåle") > 0:
                 global stash
                 stash = input("""
-                vampyrer, presis som alla andra, dör om man spettsar dem i hjärtat.
+                vampyren, presis som alla andra, dör om man spettsar dem i hjärtat, (du har besegrat vampyren).
                 Bakom vapyren hittar du en klump med spagetti ett piller och en laddad pistol:
 
                 ta grejerna:    1
@@ -724,8 +731,8 @@ def borgen():
                     tunnel = input("""
                     vill du kika på andra sidan grottan eller vill du gå hem?
 
-                    gå hem:       1
-                    andra sidan:  2
+                    gå hem:                                 1
+                    kolla på andra sidan mot under staden:  2
                     → """)
                     if tunnel == "0":
                         start()
@@ -734,8 +741,8 @@ def borgen():
                         tunnel = input("""
                         vill du kika på andra sidan grottan eller vill du gå hem?
 
-                        gå hem:       1
-                        andra sidan:  2
+                        gå hem:                                 1
+                        kolla på andra sidan mot under staden:  2
                         → """)
                         os.system('cls')
             else:
@@ -756,7 +763,7 @@ def borgen():
                 if spelare.count("vampirism") > 0: 
                     print("""
                     dina nya vampyr krafter låter dig ducka undan från skotten något skutit mot dig,
-                    bara en bra stund efter du flytt in i skogen inser du att din hud fräter,
+                    bara en bra stund efter din flytkt in i skogen inser du att din hud fräter,
                     """)
                     if ending.count("vampyr") == 0:
                         ending = ending + ["vampyr"]
@@ -788,6 +795,7 @@ def mötesplattsen():
     du ser att kloakerna leder ned i grottorna,
     det kan inte vara bra.
     """)
+    global death
     global galler
     galler = spelare.count("vampirism")
     if galler > 0:
@@ -795,8 +803,8 @@ def mötesplattsen():
         antiklimax = input("""
         du kan använda dina vampyr krafter för att ta din igenom gallren, eller så kan du förtsätta frammåt
 
-        genom gallret:    1
-        fortsätt frammåt: 2
+        genom gallret:                     1
+        fortsätt frammåt mot under staden: 2
         → """)
         os.system('cls')
         if antiklimax == "0":
@@ -823,6 +831,8 @@ def mötesplattsen():
 #Stadens tunnlar
 def kloaken():
     "under staden, du möter gurg, detta är sista scenen i spelet (om du gjort rätt)"
+    global death
+    global ending
     global val
     print("""
     du fortsätter frammåt till du plöttsligt ser en siluett av vad du tror är en man, men något är off,
@@ -921,8 +931,8 @@ def kloaken():
             Efter en liten stund öpnar du ögonen igen och ser att figuren rodnar,
             den har tagit spaghettin som en romantisk gest, och vänder sig om för att ge dig något i retur.
 
-            vänta: 1
-            SKUT:  2
+            vänta:  1
+            SKJUT:  2
             → """)
             os.system('cls')
 
