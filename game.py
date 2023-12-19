@@ -624,7 +624,7 @@ def borgen():
             print(f"du har {spelare}")
             inspektion = input("""
                 tillslut kommer du fram till en borg i grottan,
-                utanför ligger en kristall, vad vill du?
+                vad vill du?
 
                 återvänd: 1
                 inbrott: 2
