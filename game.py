@@ -960,7 +960,7 @@ def kloaken():
                     """)
                     if ending.count("avrättad") == 0:
                         ending = ending + ["avrättad"]
-                    input(f"""
+                    val = input(f"""
                     PANG! *det isar i bröstet* innan du hinner reagera har agenten skutit dig...
                     "mycket dåligt val"
                     
@@ -998,7 +998,7 @@ def kloaken():
                         if sim == "1":
                             if ending.count("destroyer of worlds") == 0:
                                 ending = ending + ["destroyer of worlds"]
-                            input(f"""
+                            val = input(f"""
                             Det tar en stund att åka genom sladdarna,
                             när du väl anländer har den förra servern slocknat.
                             
@@ -1081,7 +1081,7 @@ def kloaken():
                             Boss fight: agent K
 
                             """)
-                            input(f"""
+                            val = input(f"""
                             PANG! *det isar i bröstet* innan du hinner reagera har agenten skutit dig...
                             "mycket dåligt val"
                             
