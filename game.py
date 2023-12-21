@@ -153,7 +153,7 @@ def start():
 
         reset()
 
-        print(f"""(hittade avslut {len(ending)+len(death)}/18)
+        print(f"""(hittade avslut {len(ending)+len(death)}/17)
 
         EN VANLIG DAG
         försök: {försök}
@@ -224,7 +224,7 @@ def sovrum():
                 val = input(f"""
                 
                 Death: skördad
-                {len(death)}/8 Deaths hittade
+                {len(death)}/7 Deaths hittade
                 börja om: 0
                 → """)
                 if val == "0":
@@ -510,7 +510,7 @@ def biblioteket():
                     en hylla tippar över och krossar dig
                     
                     Death: karma
-                    {len(death)}/8 Deaths hittade
+                    {len(death)}/7 Deaths hittade
                     börja om: 0
                     → """)
                     if val == "0":
@@ -538,7 +538,7 @@ def gatan():
         val = input(f"""
             
             Death: påkörd
-            {len(death)}/8 Deaths hittade
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
         if val == "0":
@@ -686,7 +686,7 @@ def borgen():
             val = input(f"""
             
             Death: upäten av vampyr
-            {len(death)}/8 Deaths hittade
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
@@ -699,7 +699,7 @@ def borgen():
             att vampyrer dör av lök är en myt.
             
             death: upäten av vampyr
-            {len(death)}/8 deaths hittade
+            {len(death)}/7 deaths hittade
             börja om: 0
             → """)
             if val == "0":
@@ -762,7 +762,7 @@ def borgen():
                 du har ingen träpåle
                 
                 Death: upäten av vampyr
-                {len(death)}/8 Deaths hittade
+                {len(death)}/7 Deaths hittade
                 börja om: 0
                 → """)
                 if val == "0":
@@ -782,17 +782,17 @@ def flykt():
         val = input(f"""
             
             Ending: vampyr
-            {len(ending)}/8 endings hittade
+            {len(ending)}/7 endings hittade
             börja om: 0
             → """)
         if val == "0":
             start() 
         else:
-            if death.count("skuten") == 0:
-                death = death + ["skuten"]
+            if death.count("skjuten") == 0:
+                death = death + ["skjuten"]
             val = input(f"""
             
-            Death: skuten
+            Death: skjuten
             {len(death)}/10 Deaths hittade
             börja om: 0
             → """)
@@ -830,13 +830,13 @@ def mötesplattsen():
             du dog av antiklimax
             
             Death: MEH!
-            {len(death)}/8 Deaths hittade
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
                 start()
-    
-    kloaken()
+        while antiklimax == "2":
+            kloaken()
 
 #Stadens tunnlar
 def kloaken():
@@ -850,6 +850,7 @@ def kloaken():
     figuren tittar på dig.
     """)
     global gurg
+    global droger
     while droger.count("piller") > 0:
         gurg = input("""
         BOSS FIGHT: gurg the ...guy?
@@ -873,7 +874,7 @@ def kloaken():
             Gurg äter up dig,
             
             Death: upäten av gurg
-            {len(death)}/8 Deaths hittade
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
@@ -886,7 +887,7 @@ def kloaken():
             Gurg äter up dig,
             
             Death: upäten av gurg
-            {len(death)}/8 Deaths hittade
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
@@ -899,7 +900,7 @@ def kloaken():
             Gurg äter up dig,
             
             Death: upäten av gurg
-            {len(death)}/8 Deaths hittade
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
@@ -914,7 +915,7 @@ def kloaken():
             Gurg äter up dig,
             
             Death: upäten av gurg
-            {len(death)}/8 Deaths hittade
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
@@ -928,7 +929,7 @@ def kloaken():
             han biter dig i halsen tillbaka och ger dig död,
             
             Death: upäten av gurg
-            {len(death)}/8 Deaths hittade
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
@@ -989,7 +990,7 @@ def kloaken():
                     "mycket dåligt val"
                     
                     death: avrättad
-                    {len(death)}/8 deaths hittade
+                    {len(death)}/7 deaths hittade
                     börja om: 0
                     → """)
                     if val == "0":
@@ -1070,7 +1071,7 @@ def kloaken():
                         Gurg äter up dig,
                         
                         Death: upäten av gurg
-                        {len(death)}/8 Deaths hittade
+                        {len(death)}/7 Deaths hittade
                         börja om: 0
                         → """)
                         if val == "0":
@@ -1112,7 +1113,7 @@ def kloaken():
                             "mycket dåligt val"
                             
                             Death: avrättad
-                            {len(death)}/8 Deaths hittade
+                            {len(death)}/7 Deaths hittade
                             börja om: 0
                             → """)
                             if val == "0":
@@ -1138,7 +1139,7 @@ def kloaken():
             Gurg äter up dig,
             
             death: upäten av gurg
-        {len(death)}/8 deaths hittade
+        {len(death)}/7 deaths hittade
             börja om: 0
             → """)
             if val == "0":
