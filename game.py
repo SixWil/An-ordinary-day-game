@@ -138,7 +138,7 @@ def tutorial():
         För att välja en handling skriv dess siffra längst ned i konsollen (detta är i konsollen) och tryck på return (ny rad knappen), till exempel:
 
         Starta: 1
-        (klicka)→ """)
+        (först måste du klicka här)→ """)
         if intro == "1":
             start()
 
@@ -212,7 +212,7 @@ def sovrum():
                     start()
             
         while vakenhet == "2":
-            if tid > 3:
+            if tid > 2:
                 print("du har snoozat så länge att världen omkring dig har förändrats")
             while 5 > tid > 2:
                 print("""
@@ -620,7 +620,7 @@ def borgen():
         start()
     while inspektion == "1":
         grottan()
-    while inspektion == "3":
+    if inspektion == "3":
         global death
         global ending
         global spelare
@@ -645,11 +645,11 @@ def borgen():
                 start()
             global räkning
             räkning = räkning +1
-        else:
-            print("du är inte smart nog för att förstå kristallen")
+        if hittad < 0:
+            print("du är inte smart nog för att förstå kristallen, hur du kan bli smartare?..")
             inspektion = input("""
                 tillslut kommer du fram till en borg i grottan,
-                utanför ligger en kristall, vad vill du?
+                utanför ligger kristallen, vad vill du?
 
                 återvänd åt andra hållet i grottan: 1
                 inbrott i borgen:                   2
@@ -755,7 +755,7 @@ def borgen():
                         os.system('cls')
                     while tunnel == "1":
                         flykt()
-            else:
+            if spelare.count("träpåle") < 0:
                 if death.count("upäten av vampyr") == 0:
                     death = death + ["upäten av vampyr"]
                 val = input(f"""
@@ -837,6 +837,8 @@ def mötesplattsen():
                 start()
         while antiklimax == "2":
             kloaken()
+    else:
+        kloaken()
 
 #Stadens tunnlar
 def kloaken():
@@ -966,12 +968,12 @@ def kloaken():
                 if agent == "0":
                     start()
                 while agent == "1":
-                    if ending.count("Bödeln") == 0:
-                        ending = ending + ["Bödeln"]
+                    if ending.count("Killer") == 0:
+                        ending = ending + ["Killer"]
                     val = input(f"""
                     "mycket bra val"
                     
-                    Ending: Bödeln
+                    Ending: Killer
                     {len(ending)}/10 endings hittade
                     börja om: 0
                     → """)
@@ -1089,12 +1091,12 @@ def kloaken():
                         → """)
                         os.system('cls')
                         while agent == "1":
-                            if ending.count("Bödeln") == 0:
-                                ending = ending + ["Bödeln"]
+                            if ending.count("Killer") == 0:
+                                ending = ending + ["Killer"]
                             val = input(f"""
                             "mycket bra val"
                             
-                            Ending: Bödeln
+                            Ending: Killer
                             {len(ending)}/10 endings hittade
                             börja om: 0
                             → """)
