@@ -2,12 +2,12 @@
 
 # programmet är skrivet lite som en rysk docka i att det är funktioner i funktioner i funktioner,
 # detta så att programmet alltid ska ha någonting att falla tillbaka till
-# (om användaren ger ett oregistererat värde till en input).
+# (om användaren ger ett oregistrerat värde till en input).
 
 
 # IMPORT
 
-# os används för ta bort all text i konsollen för nästa steg
+# os används för ta bort all text i konsolen för nästa steg
 import os
 
 
@@ -20,7 +20,7 @@ death = []
 
 # (reset)
 def reset():
-    "Nästan alla varabler måste vara globala så de kan nollsättas"
+    "Nästan alla variabler måste vara globala så de kan nollställas"
     os.system('cls')
 
     global intro
@@ -135,7 +135,7 @@ def tutorial():
                                               __/ |               __/ |
         (Körs i fullskärmsläge)              |___/               |___/ 
         Spelet är designat för att köras flera gånger och därför kan du alltid starta om genom att skriva: 0.
-        För att välja en handling skriv dess siffra längst ned i konsollen (detta är i konsollen) och tryck på return (ny rad knappen), till exempel:
+        För att välja en handling skriv dess siffra längst ned i konsolen (detta är i konsolen) och tryck på return (ny rad knappen), till exempel:
 
         Starta: 1
         (först måste du klicka här)→ """)
@@ -144,7 +144,7 @@ def tutorial():
 
 #starta och starta om programmet
 def start():
-    "resettar programmet, initsierar sovrummet"
+    "resettar programmet, initierar sovrummet"
     while True:
         global ending
         global death
@@ -153,7 +153,7 @@ def start():
 
         reset()
 
-        print(f"""(hittade avslut {len(ending)+len(death)}/18)
+        print(f"""(hittade avslut {len(ending)+len(death)}/17)
 
         EN VANLIG DAG
         försök: {försök}
@@ -217,14 +217,14 @@ def sovrum():
             while 5 > tid > 2:
                 print("""
                 Du vaknar i nån slags pod, en alien märker att du vaknat.
-                Det trycker på en knapp och metaliska klor kommer ut ur väggarna... och in i dig.
+                Det trycker på en knapp och metalliska klor kommer ut ur väggarna... och in i dig.
                 """)
                 if death.count("skördad") == 0:
                     death = death + ["skördad"]
                 val = input(f"""
                 
                 Death: skördad
-                {len(death)}/8 Deaths hittade
+                {len(death)}/7 Deaths hittade
                 börja om: 0
                 → """)
                 if val == "0":
@@ -356,11 +356,11 @@ def hallen():
 #skolan
 def skolan():
     global ending
-    "i skolan kan du uppnå inteligens, det kommer du behöva senare, går du för långt får du en ending"
+    "i skolan kan du uppnå intelligens, det kommer du behöva senare, går du för långt får du en ending"
     global val
     global koridor
     koridor = input("""
-    du går runt i skolans koridorer, du kan fortsätta framåt in i ett kontor, vika in till bilblioteket, eller vända om.
+    du går runt i skolans korridorer, du kan fortsätta framåt in i ett kontor, vika in till biblioteket, eller vända om.
 
     Lämna skolan:     1
     Kontor:           2
@@ -398,7 +398,7 @@ def skolan():
                 start()
         while läraren == "2":
             global spelare
-            while spelare.count("inteligens") == 1:
+            while spelare.count("intelligens") == 1:
                 print("du är inte korkad nog att besegra läraren")
                 if ending.count("Kvarsittning") == 0:
                     ending = ending + ["Kvarsittning"]
@@ -423,20 +423,20 @@ def skolan():
             if val == "0":
                 start()
     while koridor == "3":
-        if spelare.count("inteligens") == 1:
+        if spelare.count("intelligens") == 1:
             print("det finns inget mer att lära sig i biblioteket")
             skolan()
         else: biblioteket()
 
 #biblioteket
 def biblioteket():
-    "läs 3 böcker för att bli smart, läser du 10 kommer bibliotikaren"
+    "läs 3 böcker för att bli smart, läser du 10 kommer bibliotekarien"
     global death
     global läst
     global böcker
     while True:
         böcker = input(f"""
-        Du sätter dig i bibloteket
+        Du sätter dig i biblioteket
 
         läs:               1
         lämna biblioteket: 2
@@ -457,8 +457,8 @@ def biblioteket():
             
             while läst == 3:
                 global spelare
-                if spelare.count("inteligens") == 0:
-                    spelare = spelare + ["inteligens"]
+                if spelare.count("intelligens") == 0:
+                    spelare = spelare + ["intelligens"]
 
                 print(f"""
                 du har läst klart boken.
@@ -486,10 +486,10 @@ def biblioteket():
             while läst == 10:
                 global respekt
                 respekt = input("""
-                Ur en hög böcker vaknar en biblotikarie, du får inte vara här idag
-                BOSS FIGHT: biblotikarien
+                Ur en hög böcker vaknar en bibliotekarie, du får inte vara här idag
+                BOSS FIGHT: bibliotekarien
 
-                var tyst i bilbioteket: 2
+                var tyst i biblioteket: 2
                 skrik och slamra:       3
                 → """)
                 os.system('cls')
@@ -506,11 +506,11 @@ def biblioteket():
                     if death.count("karma") == 0:
                         death = death + ["karma"]
                     val = input(f"""
-                    din ligism gör att biblioteket reagerar våldamt,
+                    din ligism gör att biblioteket reagerar våldsamt,
                     en hylla tippar över och krossar dig
                     
                     Death: karma
-                    {len(death)}/8 Deaths hittade
+                    {len(death)}/7 Deaths hittade
                     börja om: 0
                     → """)
                     if val == "0":
@@ -538,7 +538,7 @@ def gatan():
         val = input(f"""
             
             Death: påkörd
-            {len(death)}/8 Deaths hittade
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
         if val == "0":
@@ -568,7 +568,7 @@ def parken():
         if ending.count("Mental health") == 0:
             ending = ending + ["Mental health"]
         val = input(f"""
-        du sitter och njuter av solens värme och fåglarnas dova bakgrunds tvitter
+        du sitter och njuter av solens värme och fåglarnas dova bakgrunds kvitter
         
         Ending: Mental health
         {len(ending)}/10 endings hittade
@@ -605,7 +605,7 @@ def grottan():
 
 #vampyrens lya
 def borgen():
-    "här sloss du med vampyren, och får grejerna för att besegra gurg i staden, pålen krävs för att besegra vampyren, inteligens krävs för pålen."
+    "här slåss du med vampyren, och får grejerna för att besegra gurg i staden, pålen krävs för att besegra vampyren, intelligens krävs för pålen."
     global inspektion
     inspektion = input("""
     tillslut kommer du fram till en borg i grottan,
@@ -625,7 +625,7 @@ def borgen():
         global ending
         global spelare
         global hittad
-        hittad = spelare.count("inteligens")
+        hittad = spelare.count("intelligens")
         if hittad > 0:
             print("""
             du är smart nog att inse att kristallen är gjord av trä,
@@ -659,7 +659,7 @@ def borgen():
                 start()
     while inspektion == "2":
         print("""
-        du forstätter frammåt in i mörkret,
+        du fortsätter framåt in i mörkret,
         innan du hinner reagera flyger något från skuggorna mot dig,
         det bränner till i din hals vilket sprider sig genom dina blodådror till hela kroppen
         """)
@@ -681,25 +681,25 @@ def borgen():
         while vampyren == "1":
             global val
             global death
-            if death.count("upäten av vampyr") == 0:
-                death = death + ["upäten av vampyr"]
+            if death.count("uppäten av vampyr") == 0:
+                death = death + ["uppäten av vampyr"]
             val = input(f"""
             
-            Death: upäten av vampyr
-            {len(death)}/8 Deaths hittade
+            Death: uppäten av vampyr
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
                 start()
 
         while vampyren == "2":
-            if death.count("upäten av vampyr") == 0:
-                death = death + ["upäten av vampyr"]
+            if death.count("uppäten av vampyr") == 0:
+                death = death + ["uppäten av vampyr"]
             val = input(f"""
             att vampyrer dör av lök är en myt.
             
-            death: upäten av vampyr
-            {len(death)}/8 deaths hittade
+            death: uppäten av vampyr
+            {len(death)}/7 deaths hittade
             börja om: 0
             → """)
             if val == "0":
@@ -711,8 +711,8 @@ def borgen():
             if spelare.count("träpåle") > 0:
                 global stash
                 stash = input("""
-                vampyren, presis som alla andra, dör om man spettsar dem i hjärtat, (du har besegrat vampyren).
-                Bakom vapyren hittar du en klump med spagetti ett piller och en laddad pistol:
+                vampyren, precis som alla andra, dör om man spettar dem i hjärtat, (du har besegrat vampyren).
+                Bakom vampyren hittar du en klump med spagetti ett piller och en laddad pistol:
 
                 ta grejerna:    1
                 lämna grejerna: 2
@@ -756,13 +756,13 @@ def borgen():
                     while tunnel == "1":
                         flykt()
             if spelare.count("träpåle") < 0:
-                if death.count("upäten av vampyr") == 0:
-                    death = death + ["upäten av vampyr"]
+                if death.count("uppäten av vampyr") == 0:
+                    death = death + ["uppäten av vampyr"]
                 val = input(f"""
                 du har ingen träpåle
                 
-                Death: upäten av vampyr
-                {len(death)}/8 Deaths hittade
+                Death: uppäten av vampyr
+                {len(death)}/7 Deaths hittade
                 börja om: 0
                 → """)
                 if val == "0":
@@ -774,25 +774,25 @@ def flykt():
     print("du har sätt något du inte borde ha sätt")
     while spelare.count("vampirism") > 0: 
         print("""
-        dina nya vampyr krafter låter dig ducka undan från skotten något skutit mot dig,
-        bara en bra stund efter din flytkt in i skogen inser du att din hud fräter,
+        dina nya vampyr krafter låter dig ducka undan från skotten något skjutit mot dig,
+        bara en bra stund efter din flykt in i skogen inser du att din hud fräter,
         """)
         if ending.count("vampyr") == 0:
             ending = ending + ["vampyr"]
         val = input(f"""
             
             Ending: vampyr
-            {len(ending)}/8 endings hittade
+            {len(ending)}/7 endings hittade
             börja om: 0
             → """)
         if val == "0":
             start() 
         else:
-            if death.count("skuten") == 0:
-                death = death + ["skuten"]
+            if death.count("skjuten") == 0:
+                death = death + ["skjuten"]
             val = input(f"""
             
-            Death: skuten
+            Death: skjuten
             {len(death)}/10 Deaths hittade
             börja om: 0
             → """)
@@ -814,7 +814,7 @@ def mötesplattsen():
         du kan använda dina vampyr krafter för att ta din igenom gallren, eller så kan du förtsätta frammåt
 
         genom gallret:                     1
-        fortsätt frammåt mot under staden: 2
+        fortsätt framåt mot under staden: 2
         → """)
         os.system('cls')
         if antiklimax == "0":
@@ -830,7 +830,7 @@ def mötesplattsen():
             du dog av antiklimax
             
             Death: MEH!
-            {len(death)}/8 Deaths hittade
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
@@ -847,7 +847,7 @@ def kloaken():
     global ending
     global val
     print("""
-    du fortsätter frammåt till du plöttsligt ser en siluett av vad du tror är en man, men något är off,
+    du fortsätter framåt till du plötsligt ser en siluett av vad du tror är en man, men något är off,
     det ser ut som att han smälter. Du snubblar och ljudet du gör för att återfå balansen ekar genom tunneln,
     figuren tittar på dig.
     """)
@@ -869,69 +869,69 @@ def kloaken():
             start()
         while gurg == "1":
             global death
-            if death.count("upäten av gurg") == 0:
-                death = death + ["upäten av gurg"]
+            if death.count("uppäten av gurg") == 0:
+                death = death + ["uppäten av gurg"]
             val = input(f"""
             Motstånd är meningslöst,
-            Gurg äter up dig,
+            Gurg äter upp dig,
             
-            Death: upäten av gurg
-            {len(death)}/8 Deaths hittade
+            Death: uppäten av gurg
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
                 start()
         while gurg == "2":
-            if death.count("upäten av gurg") == 0:
-                death = death + ["upäten av gurg"]
+            if death.count("uppäten av gurg") == 0:
+                death = death + ["uppäten av gurg"]
             val = input(f"""
             Motstånd är meningslöst,
-            Gurg äter up dig,
+            Gurg äter upp dig,
             
-            Death: upäten av gurg
-            {len(death)}/8 Deaths hittade
+            Death: uppäten av gurg
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
                 start()
         while gurg == "3":
-            if death.count("upäten av gurg") == 0:
-                death = death + ["upäten av gurg"]
+            if death.count("uppäten av gurg") == 0:
+                death = death + ["uppäten av gurg"]
             val = input(f"""
             Motstånd är meningslöst,
-            Gurg äter up dig,
+            Gurg äter upp dig,
             
-            Death: upäten av gurg
-            {len(death)}/8 Deaths hittade
+            Death: uppäten av gurg
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
                 start()
         while gurg == "5":
-            if death.count("upäten av gurg") == 0:
-                death = death + ["upäten av gurg"]
+            if death.count("uppäten av gurg") == 0:
+                death = death + ["uppäten av gurg"]
             val = input(f"""
-            Du plockar fram pistolen och skuter villt mot varelsen,
+            Du plockar fram pistolen och skjuter vilt mot varelsen,
             du har avlossat alla skott i pistolen, några kulor träffar och gör skada... inte många nog.
             Motstånd är meningslöst,
-            Gurg äter up dig,
+            Gurg äter upp dig,
             
-            Death: upäten av gurg
-            {len(death)}/8 Deaths hittade
+            Death: uppäten av gurg
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
                 start()
 
         while gurg == "6":
-            if death.count("upäten av gurg") == 0:
-                death = death + ["upäten av gurg"]
+            if death.count("uppäten av gurg") == 0:
+                death = death + ["uppäten av gurg"]
             val = input(f"""
             du flyger fram och biter gurg i halsen och ger honom vampirism,
             han biter dig i halsen tillbaka och ger dig död,
             
-            Death: upäten av gurg
-            {len(death)}/8 Deaths hittade
+            Death: uppäten av gurg
+            {len(death)}/7 Deaths hittade
             börja om: 0
             → """)
             if val == "0":
@@ -939,9 +939,9 @@ def kloaken():
         while gurg == "4":
             global romans
             romans = input("""
-            du gräppar frenetiskt efter något att och får fram spaghettin,
+            du greppar frenetiskt efter något att och får fram spaghettin,
             du håller fram den som en sköld framför dig.
-            Efter en liten stund öpnar du ögonen igen och ser att figuren rodnar,
+            Efter en liten stund öppnar du ögonen igen och ser att figuren rodnar,
             den har tagit spaghettin som en romantisk gest, och vänder sig om för att ge dig något i retur.
 
             vänta:  1
@@ -955,8 +955,8 @@ def kloaken():
             while romans == "2":
                 global agent
                 agent =input("""
-                du plockar fram pistolen, *ditt hjärta slår* du siktar, *ditt hjärta slår* och du skuter...
-                PANG! *det piiiper i dina öron* omgivningen byter färg och varalsen faller ihop på golvet.
+                du plockar fram pistolen, *ditt hjärta slår* du siktar, *ditt hjärta slår* och du skjuter...
+                PANG! *det piiiper i dina öron* omgivningen byter färg och varelsen faller ihop på golvet.
                 Bakom dig för du att en person klappar händerna "imponerande",
                 när du vänder dig om ser du en person i kostym,
                 de erbjuder dig ett jobb och säger att de kanske kan bota din vampirism om du godkänner.
@@ -988,11 +988,11 @@ def kloaken():
                     if death.count("avrättad") == 0:
                         death = death + ["avrättad"]
                     val = input(f"""
-                    PANG! *det isar i bröstet* innan du hinner reagera har agenten skutit dig...
+                    PANG! *det isar i bröstet* innan du hinner reagera har agenten skjutit dig...
                     "mycket dåligt val"
                     
                     death: avrättad
-                    {len(death)}/8 deaths hittade
+                    {len(death)}/7 deaths hittade
                     börja om: 0
                     → """)
                     if val == "0":
@@ -1057,7 +1057,7 @@ def kloaken():
                     gurg ser förvirrad ut
 
                     vänta: 1
-                    SKUT: 2
+                    skjut: 2
                     → """)
                     os.system('cls')
                     if nekad == "0":
@@ -1066,22 +1066,22 @@ def kloaken():
                         print("""
                         när han inser vad du gjort blir han förargad
                         """)
-                        if death.count("upäten av gurg") == 0:
-                            death = death + ["upäten av gurg"]
+                        if death.count("uppäten av gurg") == 0:
+                            death = death + ["uppäten av gurg"]
                         val = input(f"""
                         Motstånd är meningslöst,
                         Gurg äter up dig,
                         
-                        Death: upäten av gurg
-                        {len(death)}/8 Deaths hittade
+                        Death: uppäten av gurg
+                        {len(death)}/7 Deaths hittade
                         börja om: 0
                         → """)
                         if val == "0":
                             start()
                     while nekad == "2":
                         agent =input("""
-                        du plockar fram pistolen, *ditt hjärta slår* du siktar, *ditt hjärta slår* och du skuter...
-                        PANG! *det piiiper i dina öron* omgivningen byter färg och varalsen faller ihop på golvet.
+                        du plockar fram pistolen, *ditt hjärta slår* du siktar, *ditt hjärta slår* och du skjuter...
+                        PANG! *det piiiper i dina öron* omgivningen byter färg och varelsen faller ihop på golvet.
                         Bakom dig för du att en person klappar händerna "imponerande",
                         när du vänder dig om ser du en person i kostym,
                         de erbjuder dig ett jobb och säger att de kanske kan bota din vampirism om du godkänner.
@@ -1111,11 +1111,11 @@ def kloaken():
 
                             """)
                             val = input(f"""
-                            PANG! *det isar i bröstet* innan du hinner reagera har agenten skutit dig...
+                            PANG! *det isar i bröstet* innan du hinner reagera har agenten skjutit dig...
                             "mycket dåligt val"
                             
                             Death: avrättad
-                            {len(death)}/8 Deaths hittade
+                            {len(death)}/7 Deaths hittade
                             börja om: 0
                             → """)
                             if val == "0":
@@ -1134,14 +1134,14 @@ def kloaken():
         → """)
         os.system('cls')
         while True:
-            if death.count("upäten av gurg") == 0:
-                death = death + ["upäten av gurg"]
+            if death.count("uppäten av gurg") == 0:
+                death = death + ["uppäten av gurg"]
             val = input(f"""
             Motstånd är meningslöst,
             Gurg äter up dig,
             
-            death: upäten av gurg
-        {len(death)}/8 deaths hittade
+            death: uppäten av gurg
+        {len(death)}/7 deaths hittade
             börja om: 0
             → """)
             if val == "0":
