@@ -134,7 +134,7 @@ def tutorial():
         |______|_| |_|   \_/ \__,_|_| |_|_|_|\__, |  \__,_|\__,_|\__, |
                                               __/ |               __/ |
         (Körs i fullskärmsläge)              |___/               |___/ 
-        Spelet är designat för att köras flera gånger och därför kan du alltid starta om genom att skriva: 0.
+        Spelet är designat för att köras flera gånger och hitta så många avslut (Death + Ending) du kan, därför kan du alltid starta om genom att skriva: 0.
         För att välja en handling skriv dess siffra längst ned i konsolen (detta är i konsolen) och tryck på return (ny rad knappen), till exempel:
 
         Starta: 1
@@ -1138,7 +1138,7 @@ def kloaken():
                 death = death + ["uppäten av gurg"]
             val = input(f"""
             Motstånd är meningslöst,
-            Gurg äter up dig,
+            Gurg äter upp dig,
             
             death: uppäten av gurg
         {len(death)}/7 deaths hittade
