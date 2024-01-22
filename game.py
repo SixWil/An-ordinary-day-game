@@ -119,7 +119,7 @@ def reset():
 # TUTORIAL
 försök = 0
 def tutorial():
-    "körs bara en gång när programmet startas första gången"
+    """körs bara en gång när programmet startas första gången"""
 
     global intro
     os.system('cls')
@@ -144,7 +144,7 @@ def tutorial():
 
 #starta och starta om programmet
 def start():
-    "resettar programmet, initierar sovrummet"
+    """resettar programmet, initierar sovrummet"""
     while True:
         global ending
         global death
@@ -163,7 +163,7 @@ def start():
 
 # Sovrum
 def sovrum():
-    "start rum, inget speciellt"
+    """start rum, inget speciellt"""
     while True:
         global ending
         global death
@@ -250,7 +250,7 @@ def sovrum():
                 köket()
 #Köket
 def köket():
-    "köket, här kan du välja frukost, har liten effekt på spelets slut"
+    """köket, här kan du välja frukost, har liten effekt på spelets slut"""
     global frukost
     frukost = input("""
     I köket står en svart tunna med en hazard symbol på,
@@ -305,7 +305,7 @@ def köket():
 #Hallen
 def hallen():
     global ending
-    "vilken ordning vill du utforska världen, korrekt är först skolan sedan äventyr, stanna hemma ger en ending"
+    """vilken ordning vill du utforska världen, korrekt är först skolan sedan äventyr, stanna hemma ger en ending"""
     global dagsplan
     dagsplan = input("""
         du funderar på vad du vill göra idag
@@ -356,7 +356,7 @@ def hallen():
 #skolan
 def skolan():
     global ending
-    "i skolan kan du uppnå intelligens, det kommer du behöva senare, går du för långt får du en ending"
+    """i skolan kan du uppnå intelligens, det kommer du behöva senare, går du för långt får du en ending"""
     global val
     global koridor
     koridor = input("""
@@ -430,7 +430,7 @@ def skolan():
 
 #biblioteket
 def biblioteket():
-    "läs 3 böcker för att bli smart, läser du 10 kommer bibliotekarien"
+    """läs 3 böcker för att bli smart, läser du 10 kommer bibliotekarien"""
     global death
     global läst
     global böcker
@@ -519,7 +519,7 @@ def biblioteket():
 #övergångstället
 def gatan():
     global death
-    "detta är bara för att retas, fyller ingen funktion alls."
+    """detta är bara för att retas, fyller ingen funktion alls."""
     global trafik
     trafik = input("""
     Du står framför ett övergångställe
@@ -586,7 +586,7 @@ def parken():
 
 #grottan
 def grottan():
-    "här kan du gå vänster till staden ändå, du ska gå till höger"
+    """här kan du gå vänster till staden ändå, du ska gå till höger"""
     global tunnel
     tunnel = input("""
     efter ett tag delar grottan sig i två,
@@ -605,7 +605,7 @@ def grottan():
 
 #vampyrens lya
 def borgen():
-    "här slåss du med vampyren, och får grejerna för att besegra gurg i staden, pålen krävs för att besegra vampyren, intelligens krävs för pålen."
+    """här slåss du med vampyren, och får grejerna för att besegra gurg i staden, pålen krävs för att besegra vampyren, intelligens krävs för pålen."""
     global inspektion
     inspektion = input("""
     tillslut kommer du fram till en borg i grottan,
@@ -800,7 +800,7 @@ def flykt():
             start()
 # där tunnlarna och grottorna möts
 def mötesplattsen():
-    "där grottan och kloaken möts, är du vampyr kan du gå igenom gallret och få en ending"
+    """där grottan och kloaken möts, är du vampyr kan du gå igenom gallret och få en ending"""
     print("""
     du ser att kloakerna leder ned i grottorna,
     det kan inte vara bra.
@@ -842,7 +842,7 @@ def mötesplattsen():
 
 #Stadens tunnlar
 def kloaken():
-    "under staden, du möter gurg, detta är sista scenen i spelet (om du gjort rätt)"
+    """under staden, du möter gurg, detta är sista scenen i spelet (om du gjort rätt)"""
     global death
     global ending
     global val
